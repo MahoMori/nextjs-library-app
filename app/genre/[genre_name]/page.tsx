@@ -1,20 +1,17 @@
 "use client";
 import { books, Book } from "@/app/book-data";
 import Image from "next/image";
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function GenrePage({
   params,
 }: {
-  params: { genre_name: string };
+  params: Promise<{ genre_name: string }>;
 }) {
-  const genre = params.genre_name.replace("%20", " ");
-  const [userHold, setUserHold] = useState<number[]>(
-    JSON.parse(localStorage.getItem("hold") || "[]")
-  );
-  const [userForLater, setUserForLater] = useState<number[]>(
-    JSON.parse(localStorage.getItem("hold") || "[]")
-  );
+  const { genre_name } = React.use(params); // Unwrap the params promise
+  const genre = genre_name.replace("%20", " ");
+  const [userHold, setUserHold] = useState<number[]>([]);
+  const [userForLater, setUserForLater] = useState<number[]>([]);
 
   const hold = (bookId: number) => {
     if (!userHold.includes(bookId)) {
@@ -22,11 +19,17 @@ export default function GenrePage({
     } else {
       const index = userHold.indexOf(bookId);
       if (index > -1) {
-        userHold.splice(index, 1); // Remove the bookId from the hold array
+        userHold.splice(index, 1);
       }
     }
-    setUserHold([...userHold]); // Update state to trigger re-render
-    localStorage.setItem("hold", JSON.stringify(userHold));
+    setUserHold([...userHold]);
+
+    // Update the book data to reflect the hold status
+    books.find((book) => book.id === bookId)!.num_of_holds += userHold.includes(
+      bookId
+    )
+      ? 1
+      : -1;
   };
 
   const forLater = (bookId: number) => {
@@ -35,11 +38,10 @@ export default function GenrePage({
     } else {
       const index = userForLater.indexOf(bookId);
       if (index > -1) {
-        userForLater.splice(index, 1); // Remove the bookId from the forLater array
+        userForLater.splice(index, 1);
       }
     }
-    setUserForLater([...userForLater]); // Update state to trigger re-render
-    localStorage.setItem("forLater", JSON.stringify(userForLater));
+    setUserForLater([...userForLater]);
   };
 
   return (
