@@ -20,7 +20,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 3,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/8228691-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/olid/OL25228947M-L.jpg",
   },
   {
     id: 2,
@@ -42,7 +42,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8091016-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/olid/OL43294729M-L.jpg",
   },
   {
     id: 4,
@@ -53,7 +53,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 2,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8231856-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/olid/OL47773871M-L.jpg",
   },
   {
     id: 5,
@@ -64,7 +64,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 6,
-    book_cover: "https://covers.openlibrary.org/b/id/7222276-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/olid/OL26495848M-L.jpg",
   },
   {
     id: 6,
@@ -75,7 +75,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8775362-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/olid/OL43359404M-L.jpg",
   },
   {
     id: 7,
@@ -86,7 +86,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8231990-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/olid/OL37044808M-L.jpg",
   },
   {
     id: 8,
@@ -97,7 +97,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/8231859-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/olid/OL37873116M-L.jpg",
   },
   {
     id: 9,
@@ -108,7 +108,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 5,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/11153701-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/olid/OL23269355M-L.jpg",
   },
   {
     id: 10,
@@ -119,7 +119,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8225631-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/olid/OL21516677M-L.jpg",
   },
 
   {
@@ -153,7 +153,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8104467-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780756404741-L.jpg",
   },
   {
     id: 14,
@@ -164,7 +164,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 6,
-    book_cover: "https://covers.openlibrary.org/b/id/7292161-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780553573404-L.jpg",
   },
   {
     id: 15,
@@ -175,7 +175,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 0,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/6786973-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/076531178X-L.jpg",
   },
   {
     id: 16,
@@ -186,7 +186,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 7,
-    book_cover: "https://covers.openlibrary.org/b/id/8231852-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/olid/OL26449223M-L.jpg",
   },
   {
     id: 17,
@@ -197,7 +197,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 2,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8228690-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/0064471047-L.jpg",
   },
   {
     id: 18,
@@ -208,7 +208,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8208085-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/055358894X-L.jpg",
   },
   {
     id: 19,
@@ -219,7 +219,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 1,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/8139342-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/0375826696-L.jpg",
   },
   {
     id: 20,
@@ -230,7 +230,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8101344-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/0060558121-L.jpg",
   },
   {
     id: 21,
@@ -241,7 +241,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8225572-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/0307588378-L.jpg",
   },
   {
     id: 22,
@@ -252,7 +252,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 2,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/6660731-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/0307454541-L.jpg",
   },
   {
     id: 23,
@@ -263,7 +263,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/295415-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/0385504209-L.jpg",
   },
   {
     id: 24,
@@ -274,7 +274,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 0,
     num_of_copies: 5,
-    book_cover: "https://covers.openlibrary.org/b/id/8225635-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/0399167064-L.jpg",
   },
   {
     id: 25,
@@ -285,7 +285,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8235264-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780062073488-L.jpg",
   },
   {
     id: 26,
@@ -296,7 +296,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 6,
-    book_cover: "https://covers.openlibrary.org/b/id/8235226-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780141034324-L.jpg",
   },
   {
     id: 27,
@@ -307,7 +307,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 2,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8234562-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780143113492-L.jpg",
   },
   {
     id: 28,
@@ -318,7 +318,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8232009-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780316206846-L.jpg",
   },
   {
     id: 29,
@@ -329,7 +329,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 5,
-    book_cover: "https://covers.openlibrary.org/b/id/8225634-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780307341556-L.jpg",
   },
   {
     id: 30,
@@ -340,7 +340,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 3,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/9252274-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9781250301697-L.jpg",
   },
   {
     id: 31,
@@ -351,7 +351,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/8101341-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg",
   },
   {
     id: 32,
@@ -362,7 +362,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 2,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/7669258-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780812550702-L.jpg",
   },
   {
     id: 33,
@@ -373,7 +373,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 5,
-    book_cover: "https://covers.openlibrary.org/b/id/8163691-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780441569595-L.jpg",
   },
   {
     id: 34,
@@ -384,7 +384,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/6979864-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780553293357-L.jpg",
   },
   {
     id: 35,
@@ -395,7 +395,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 1,
     num_of_copies: 6,
-    book_cover: "https://covers.openlibrary.org/b/id/8165587-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780553418026-L.jpg",
   },
   {
     id: 36,
@@ -406,7 +406,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 2,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8231932-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780345404473-L.jpg",
   },
   {
     id: 37,
@@ -417,7 +417,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8150616-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780553380958-L.jpg",
   },
   {
     id: 38,
@@ -428,7 +428,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/8281661-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780441478125-L.jpg",
   },
   {
     id: 39,
@@ -439,7 +439,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 4,
     num_of_copies: 5,
-    book_cover: "https://covers.openlibrary.org/b/id/7840716-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780439023528-L.jpg",
   },
   {
     id: 40,
@@ -450,7 +450,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8231853-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780307887443-L.jpg",
   },
   {
     id: 41,
@@ -461,7 +461,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 5,
-    book_cover: "https://covers.openlibrary.org/b/id/8370226-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg",
   },
   {
     id: 42,
@@ -472,7 +472,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 2,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/8369256-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780399590504-L.jpg",
   },
   {
     id: 43,
@@ -483,7 +483,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/7171623-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780374533557-L.jpg",
   },
   {
     id: 44,
@@ -494,7 +494,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/7254770-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9781400052189-L.jpg",
   },
   {
     id: 45,
@@ -505,7 +505,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 3,
     num_of_copies: 6,
-    book_cover: "https://covers.openlibrary.org/b/id/8588736-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9781476728742-L.jpg",
   },
   {
     id: 46,
@@ -516,7 +516,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/7574333-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780307352156-L.jpg",
   },
   {
     id: 47,
@@ -527,7 +527,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 1,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/7222278-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780060731335-L.jpg",
   },
   {
     id: 48,
@@ -538,7 +538,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 5,
-    book_cover: "https://covers.openlibrary.org/b/id/8770641-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9781524731656-L.jpg",
   },
   {
     id: 49,
@@ -549,7 +549,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 0,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/7357460-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780812981605-L.jpg",
   },
   {
     id: 50,
@@ -560,7 +560,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8228694-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780385486804-L.jpg",
   },
   {
     id: 51,
@@ -571,7 +571,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/7109021-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780553296983-L.jpg",
   },
   {
     id: 52,
@@ -582,7 +582,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 3,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/7275320-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9781451648539-L.jpg",
   },
   {
     id: 53,
@@ -593,7 +593,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8878288-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9781524763138-L.jpg",
   },
   {
     id: 54,
@@ -604,7 +604,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 5,
-    book_cover: "https://covers.openlibrary.org/b/id/7675329-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780143034759-L.jpg",
   },
   {
     id: 55,
@@ -615,7 +615,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 2,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/7305231-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780316548182-L.jpg",
   },
   {
     id: 56,
@@ -626,7 +626,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 1,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/7300829-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780743264747-L.jpg",
   },
   {
     id: 57,
@@ -637,7 +637,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8091372-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780743246989-L.jpg",
   },
   {
     id: 58,
@@ -648,7 +648,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8231505-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780743247542-L.jpg",
   },
   {
     id: 59,
@@ -659,7 +659,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 5,
-    book_cover: "https://covers.openlibrary.org/b/id/7275310-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780316056861-L.jpg",
   },
   {
     id: 60,
@@ -670,7 +670,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 3,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/8231884-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780316322409-L.jpg",
   },
   {
     id: 61,
@@ -681,7 +681,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/8994800-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780399590504-L.jpg",
   },
   {
     id: 62,
@@ -692,7 +692,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 1,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8228690-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9781501173219-L.jpg",
   },
   {
     id: 63,
@@ -703,7 +703,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/8235781-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780375842207-L.jpg",
   },
   {
     id: 64,
@@ -714,7 +714,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 0,
     num_of_copies: 2,
-    book_cover: "https://covers.openlibrary.org/b/id/7944916-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780451225245-L.jpg",
   },
   {
     id: 65,
@@ -725,7 +725,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8231851-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780199232765-L.jpg",
   },
   {
     id: 66,
@@ -736,7 +736,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 5,
-    book_cover: "https://covers.openlibrary.org/b/id/8325466-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9781250080400-L.jpg",
   },
   {
     id: 67,
@@ -747,7 +747,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 3,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/240726-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780743227445-L.jpg",
   },
   {
     id: 68,
@@ -758,7 +758,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/7107745-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780312429980-L.jpg",
   },
   {
     id: 69,
@@ -769,7 +769,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 3,
-    book_cover: "https://covers.openlibrary.org/b/id/8222243-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780425232200-L.jpg",
   },
   {
     id: 70,
@@ -780,7 +780,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 2,
     num_of_copies: 5,
-    book_cover: "https://covers.openlibrary.org/b/id/8225636-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780141439600-L.jpg",
   },
   {
     id: 71,
@@ -791,7 +791,7 @@ export const books: Book[] = [
     is_borrowed: false,
     num_of_holds: 0,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/5182392-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9781594631931-L.jpg",
   },
   {
     id: 72,
@@ -802,7 +802,7 @@ export const books: Book[] = [
     is_borrowed: true,
     num_of_holds: 3,
     num_of_copies: 4,
-    book_cover: "https://covers.openlibrary.org/b/id/8235638-L.jpg",
+    book_cover: "https://covers.openlibrary.org/b/isbn/9780679781585-L.jpg",
   },
 ];
 
