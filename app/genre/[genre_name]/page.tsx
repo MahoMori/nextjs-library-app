@@ -1,5 +1,7 @@
+"use client";
 import { books, Book } from "@/app/book-data";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function GenrePage({
   params,
@@ -7,6 +9,38 @@ export default function GenrePage({
   params: { genre_name: string };
 }) {
   const genre = params.genre_name.replace("%20", " ");
+  const [userHold, setUserHold] = useState<number[]>(
+    JSON.parse(localStorage.getItem("hold") || "[]")
+  );
+  const [userForLater, setUserForLater] = useState<number[]>(
+    JSON.parse(localStorage.getItem("hold") || "[]")
+  );
+
+  const hold = (bookId: number) => {
+    if (!userHold.includes(bookId)) {
+      userHold.push(bookId);
+    } else {
+      const index = userHold.indexOf(bookId);
+      if (index > -1) {
+        userHold.splice(index, 1); // Remove the bookId from the hold array
+      }
+    }
+    setUserHold([...userHold]); // Update state to trigger re-render
+    localStorage.setItem("hold", JSON.stringify(userHold));
+  };
+
+  const forLater = (bookId: number) => {
+    if (!userForLater.includes(bookId)) {
+      userForLater.push(bookId);
+    } else {
+      const index = userForLater.indexOf(bookId);
+      if (index > -1) {
+        userForLater.splice(index, 1); // Remove the bookId from the forLater array
+      }
+    }
+    setUserForLater([...userForLater]); // Update state to trigger re-render
+    localStorage.setItem("forLater", JSON.stringify(userForLater));
+  };
 
   return (
     <div>
@@ -32,15 +66,37 @@ export default function GenrePage({
                 className="mt-2"
               />
               <div className="space-x-1">
-                <button className="cursor-pointer rounded-sm bg-green-500">
-                  Borrow
-                </button>
-                <button className="cursor-pointer rounded-sm bg-blue-400">
-                  Place hold
-                </button>
-                <button className="cursor-pointer rounded-sm bg-red-400">
-                  For later
-                </button>
+                {userHold.includes(book.id) ? (
+                  <button
+                    className="cursor-pointer rounded-sm bg-blue-400"
+                    onClick={() => hold(book.id)}
+                  >
+                    Cancel hold
+                  </button>
+                ) : (
+                  <button
+                    className="cursor-pointer rounded-sm bg-blue-400"
+                    onClick={() => hold(book.id)}
+                  >
+                    Place hold
+                  </button>
+                )}
+
+                {userForLater.includes(book.id) ? (
+                  <button
+                    className="cursor-pointer rounded-sm bg-red-400"
+                    onClick={() => forLater(book.id)}
+                  >
+                    Remove From Shelf
+                  </button>
+                ) : (
+                  <button
+                    className="cursor-pointer rounded-sm bg-red-400"
+                    onClick={() => forLater(book.id)}
+                  >
+                    For later
+                  </button>
+                )}
               </div>
             </div>
           );
