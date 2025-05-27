@@ -1,5 +1,5 @@
 export interface Book {
-  id: number;
+  id: string;
   title: string;
   author: string;
   published_date: string;
@@ -12,7 +12,7 @@ export interface Book {
 
 export const books: Book[] = [
   {
-    id: 1,
+    id: "1",
     title: "To Kill a Mockingbird",
     author: "Harper Lee",
     published_date: "1960-07-11",
@@ -23,7 +23,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/olid/OL25228947M-L.jpg",
   },
   {
-    id: 2,
+    id: "2",
     title: "1984",
     author: "George Orwell",
     published_date: "1949-06-08",
@@ -34,7 +34,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/id/7222246-L.jpg",
   },
   {
-    id: 3,
+    id: "3",
     title: "Pride and Prejudice",
     author: "Jane Austen",
     published_date: "1813-01-28",
@@ -45,7 +45,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/olid/OL43294729M-L.jpg",
   },
   {
-    id: 4,
+    id: "4",
     title: "The Catcher in the Rye",
     author: "J.D. Salinger",
     published_date: "1951-07-16",
@@ -56,7 +56,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/olid/OL47773871M-L.jpg",
   },
   {
-    id: 5,
+    id: "5",
     title: "The Great Gatsby",
     author: "F. Scott Fitzgerald",
     published_date: "1925-04-10",
@@ -67,7 +67,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/olid/OL26495848M-L.jpg",
   },
   {
-    id: 6,
+    id: "6",
     title: "Brave New World",
     author: "Aldous Huxley",
     published_date: "1932-08-18",
@@ -78,7 +78,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/olid/OL43359404M-L.jpg",
   },
   {
-    id: 7,
+    id: "7",
     title: "Jane Eyre",
     author: "Charlotte Brontë",
     published_date: "1847-10-16",
@@ -89,7 +89,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/olid/OL37044808M-L.jpg",
   },
   {
-    id: 8,
+    id: "8",
     title: "Wuthering Heights",
     author: "Emily Brontë",
     published_date: "1847-12-01",
@@ -100,7 +100,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/olid/OL37873116M-L.jpg",
   },
   {
-    id: 9,
+    id: "9",
     title: "Animal Farm",
     author: "George Orwell",
     published_date: "1945-08-17",
@@ -111,7 +111,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/olid/OL23269355M-L.jpg",
   },
   {
-    id: 10,
+    id: "10",
     title: "Little Women",
     author: "Louisa May Alcott",
     published_date: "1868-09-30",
@@ -121,9 +121,8 @@ export const books: Book[] = [
     num_of_copies: 2,
     book_cover: "https://covers.openlibrary.org/b/olid/OL21516677M-L.jpg",
   },
-
   {
-    id: 11,
+    id: "11",
     title: "The Hobbit",
     author: "J.R.R. Tolkien",
     published_date: "1937-09-21",
@@ -134,7 +133,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/id/6979861-L.jpg",
   },
   {
-    id: 12,
+    id: "12",
     title: "Harry Potter and the Philosopher's Stone",
     author: "J.K. Rowling",
     published_date: "1997-06-26",
@@ -145,7 +144,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/id/7984916-L.jpg",
   },
   {
-    id: 13,
+    id: "13",
     title: "The Name of the Wind",
     author: "Patrick Rothfuss",
     published_date: "2007-03-27",
@@ -156,7 +155,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780756404741-L.jpg",
   },
   {
-    id: 14,
+    id: "14",
     title: "A Game of Thrones",
     author: "George R.R. Martin",
     published_date: "1996-08-06",
@@ -167,7 +166,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780553573404-L.jpg",
   },
   {
-    id: 15,
+    id: "15",
     title: "Mistborn: The Final Empire",
     author: "Brandon Sanderson",
     published_date: "2006-07-17",
@@ -178,7 +177,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/076531178X-L.jpg",
   },
   {
-    id: 16,
+    id: "16",
     title: "The Fellowship of the Ring",
     author: "J.R.R. Tolkien",
     published_date: "1954-07-29",
@@ -189,7 +188,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/olid/OL26449223M-L.jpg",
   },
   {
-    id: 17,
+    id: "17",
     title: "The Lion, the Witch and the Wardrobe",
     author: "C.S. Lewis",
     published_date: "1950-10-16",
@@ -200,7 +199,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/0064471047-L.jpg",
   },
   {
-    id: 18,
+    id: "18",
     title: "The Lies of Locke Lamora",
     author: "Scott Lynch",
     published_date: "2006-06-27",
@@ -211,7 +210,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/055358894X-L.jpg",
   },
   {
-    id: 19,
+    id: "19",
     title: "Eragon",
     author: "Christopher Paolini",
     published_date: "2002-08-26",
@@ -222,7 +221,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/0375826696-L.jpg",
   },
   {
-    id: 20,
+    id: "20",
     title: "American Gods",
     author: "Neil Gaiman",
     published_date: "2001-06-19",
@@ -233,7 +232,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/0060558121-L.jpg",
   },
   {
-    id: 21,
+    id: "21",
     title: "Gone Girl",
     author: "Gillian Flynn",
     published_date: "2012-06-05",
@@ -244,7 +243,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/0307588378-L.jpg",
   },
   {
-    id: 22,
+    id: "22",
     title: "The Girl with the Dragon Tattoo",
     author: "Stieg Larsson",
     published_date: "2005-08-01",
@@ -255,7 +254,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/0307454541-L.jpg",
   },
   {
-    id: 23,
+    id: "23",
     title: "The Da Vinci Code",
     author: "Dan Brown",
     published_date: "2003-03-18",
@@ -266,7 +265,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/0385504209-L.jpg",
   },
   {
-    id: 24,
+    id: "24",
     title: "Big Little Lies",
     author: "Liane Moriarty",
     published_date: "2014-07-29",
@@ -277,7 +276,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/0399167064-L.jpg",
   },
   {
-    id: 25,
+    id: "25",
     title: "And Then There Were None",
     author: "Agatha Christie",
     published_date: "1939-11-06",
@@ -288,7 +287,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780062073488-L.jpg",
   },
   {
-    id: 26,
+    id: "26",
     title: "The Hound of the Baskervilles",
     author: "Arthur Conan Doyle",
     published_date: "1902-04-01",
@@ -299,7 +298,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780141034324-L.jpg",
   },
   {
-    id: 27,
+    id: "27",
     title: "In the Woods",
     author: "Tana French",
     published_date: "2007-05-17",
@@ -310,7 +309,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780143113492-L.jpg",
   },
   {
-    id: 28,
+    id: "28",
     title: "The Cuckoo's Calling",
     author: "Robert Galbraith (J.K. Rowling)",
     published_date: "2013-04-18",
@@ -321,7 +320,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780316206846-L.jpg",
   },
   {
-    id: 29,
+    id: "29",
     title: "Sharp Objects",
     author: "Gillian Flynn",
     published_date: "2006-09-26",
@@ -332,7 +331,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780307341556-L.jpg",
   },
   {
-    id: 30,
+    id: "30",
     title: "The Silent Patient",
     author: "Alex Michaelides",
     published_date: "2019-02-05",
@@ -343,7 +342,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9781250301697-L.jpg",
   },
   {
-    id: 31,
+    id: "31",
     title: "Dune",
     author: "Frank Herbert",
     published_date: "1965-08-01",
@@ -354,7 +353,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg",
   },
   {
-    id: 32,
+    id: "32",
     title: "Ender's Game",
     author: "Orson Scott Card",
     published_date: "1985-01-15",
@@ -365,7 +364,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780812550702-L.jpg",
   },
   {
-    id: 33,
+    id: "33",
     title: "Neuromancer",
     author: "William Gibson",
     published_date: "1984-07-01",
@@ -376,7 +375,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780441569595-L.jpg",
   },
   {
-    id: 34,
+    id: "34",
     title: "Foundation",
     author: "Isaac Asimov",
     published_date: "1951-05-01",
@@ -387,7 +386,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780553293357-L.jpg",
   },
   {
-    id: 35,
+    id: "35",
     title: "The Martian",
     author: "Andy Weir",
     published_date: "2011-09-27",
@@ -398,7 +397,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780553418026-L.jpg",
   },
   {
-    id: 36,
+    id: "36",
     title: "Do Androids Dream of Electric Sheep?",
     author: "Philip K. Dick",
     published_date: "1968-03-01",
@@ -409,7 +408,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780345404473-L.jpg",
   },
   {
-    id: 37,
+    id: "37",
     title: "Snow Crash",
     author: "Neal Stephenson",
     published_date: "1992-06-01",
@@ -420,7 +419,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780553380958-L.jpg",
   },
   {
-    id: 38,
+    id: "38",
     title: "The Left Hand of Darkness",
     author: "Ursula K. Le Guin",
     published_date: "1969-03-01",
@@ -431,7 +430,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780441478125-L.jpg",
   },
   {
-    id: 39,
+    id: "39",
     title: "The Hunger Games",
     author: "Suzanne Collins",
     published_date: "2008-09-14",
@@ -442,7 +441,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780439023528-L.jpg",
   },
   {
-    id: 40,
+    id: "40",
     title: "Ready Player One",
     author: "Ernest Cline",
     published_date: "2011-08-16",
@@ -453,7 +452,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780307887443-L.jpg",
   },
   {
-    id: 41,
+    id: "41",
     title: "Sapiens: A Brief History of Humankind",
     author: "Yuval Noah Harari",
     published_date: "2011-01-01",
@@ -464,7 +463,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780062316097-L.jpg",
   },
   {
-    id: 42,
+    id: "42",
     title: "Educated",
     author: "Tara Westover",
     published_date: "2018-02-20",
@@ -475,7 +474,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780399590504-L.jpg",
   },
   {
-    id: 43,
+    id: "43",
     title: "Thinking, Fast and Slow",
     author: "Daniel Kahneman",
     published_date: "2011-10-25",
@@ -486,7 +485,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780374533557-L.jpg",
   },
   {
-    id: 44,
+    id: "44",
     title: "The Immortal Life of Henrietta Lacks",
     author: "Rebecca Skloot",
     published_date: "2010-02-02",
@@ -497,7 +496,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9781400052189-L.jpg",
   },
   {
-    id: 45,
+    id: "45",
     title: "The Wright Brothers",
     author: "David McCullough",
     published_date: "2015-05-05",
@@ -508,7 +507,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9781476728742-L.jpg",
   },
   {
-    id: 46,
+    id: "46",
     title: "Quiet: The Power of Introverts in a World That Can't Stop Talking",
     author: "Susan Cain",
     published_date: "2012-01-24",
@@ -519,7 +518,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780307352156-L.jpg",
   },
   {
-    id: 47,
+    id: "47",
     title: "Freakonomics",
     author: "Steven D. Levitt & Stephen J. Dubner",
     published_date: "2005-04-12",
@@ -530,7 +529,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780060731335-L.jpg",
   },
   {
-    id: 48,
+    id: "48",
     title: "Bad Blood: Secrets and Lies in a Silicon Valley Startup",
     author: "John Carreyrou",
     published_date: "2018-05-21",
@@ -541,7 +540,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9781524731656-L.jpg",
   },
   {
-    id: 49,
+    id: "49",
     title: "The Power of Habit",
     author: "Charles Duhigg",
     published_date: "2012-02-28",
@@ -552,7 +551,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780812981605-L.jpg",
   },
   {
-    id: 50,
+    id: "50",
     title: "Into the Wild",
     author: "Jon Krakauer",
     published_date: "1996-01-13",
@@ -563,7 +562,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780385486804-L.jpg",
   },
   {
-    id: 51,
+    id: "51",
     title: "The Diary of a Young Girl",
     author: "Anne Frank",
     published_date: "1947-06-25",
@@ -574,7 +573,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780553296983-L.jpg",
   },
   {
-    id: 52,
+    id: "52",
     title: "Steve Jobs",
     author: "Walter Isaacson",
     published_date: "2011-10-24",
@@ -585,7 +584,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9781451648539-L.jpg",
   },
   {
-    id: 53,
+    id: "53",
     title: "Becoming",
     author: "Michelle Obama",
     published_date: "2018-11-13",
@@ -596,7 +595,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9781524763138-L.jpg",
   },
   {
-    id: 54,
+    id: "54",
     title: "Alexander Hamilton",
     author: "Ron Chernow",
     published_date: "2004-04-26",
@@ -607,7 +606,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780143034759-L.jpg",
   },
   {
-    id: 55,
+    id: "55",
     title: "Long Walk to Freedom",
     author: "Nelson Mandela",
     published_date: "1994-11-12",
@@ -618,7 +617,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780316548182-L.jpg",
   },
   {
-    id: 56,
+    id: "56",
     title: "Einstein: His Life and Universe",
     author: "Walter Isaacson",
     published_date: "2007-04-10",
@@ -629,7 +628,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780743264747-L.jpg",
   },
   {
-    id: 57,
+    id: "57",
     title: "Wild Swans: Three Daughters of China",
     author: "Jung Chang",
     published_date: "1991-05-16",
@@ -640,7 +639,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780743246989-L.jpg",
   },
   {
-    id: 58,
+    id: "58",
     title: "The Glass Castle",
     author: "Jeanette Walls",
     published_date: "2005-03-01",
@@ -651,7 +650,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780743247542-L.jpg",
   },
   {
-    id: 59,
+    id: "59",
     title: "Bossypants",
     author: "Tina Fey",
     published_date: "2011-04-05",
@@ -662,7 +661,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780316056861-L.jpg",
   },
   {
-    id: 60,
+    id: "60",
     title: "I Am Malala",
     author: "Malala Yousafzai",
     published_date: "2013-10-08",
@@ -673,7 +672,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780316322409-L.jpg",
   },
   {
-    id: 61,
+    id: "61",
     title: "Educating",
     author: "Tara Westover",
     published_date: "2018-02-18",
@@ -684,7 +683,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780399590504-L.jpg",
   },
   {
-    id: 62,
+    id: "62",
     title: "All the Light We Cannot See",
     author: "Anthony Doerr",
     published_date: "2014-05-06",
@@ -695,7 +694,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9781501173219-L.jpg",
   },
   {
-    id: 63,
+    id: "63",
     title: "The Book Thief",
     author: "Markus Zusak",
     published_date: "2005-03-14",
@@ -706,7 +705,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780375842207-L.jpg",
   },
   {
-    id: 64,
+    id: "64",
     title: "The Pillars of the Earth",
     author: "Ken Follett",
     published_date: "1989-09-01",
@@ -717,7 +716,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780451225245-L.jpg",
   },
   {
-    id: 65,
+    id: "65",
     title: "War and Peace",
     author: "Leo Tolstoy",
     published_date: "1869-01-01",
@@ -728,7 +727,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780199232765-L.jpg",
   },
   {
-    id: 66,
+    id: "66",
     title: "The Nightingale",
     author: "Kristin Hannah",
     published_date: "2015-02-03",
@@ -739,7 +738,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9781250080400-L.jpg",
   },
   {
-    id: 67,
+    id: "67",
     title: "The Other Boleyn Girl",
     author: "Philippa Gregory",
     published_date: "2001-05-21",
@@ -750,7 +749,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780743227445-L.jpg",
   },
   {
-    id: 68,
+    id: "68",
     title: "Wolf Hall",
     author: "Hilary Mantel",
     published_date: "2009-04-30",
@@ -761,7 +760,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780312429980-L.jpg",
   },
   {
-    id: 69,
+    id: "69",
     title: "The Help",
     author: "Kathryn Stockett",
     published_date: "2009-02-10",
@@ -772,7 +771,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780425232200-L.jpg",
   },
   {
-    id: 70,
+    id: "70",
     title: "A Tale of Two Cities",
     author: "Charles Dickens",
     published_date: "1859-04-30",
@@ -783,7 +782,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780141439600-L.jpg",
   },
   {
-    id: 71,
+    id: "71",
     title: "The Kite Runner",
     author: "Khaled Hosseini",
     published_date: "2003-05-29",
@@ -794,7 +793,7 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9781594631931-L.jpg",
   },
   {
-    id: 72,
+    id: "72",
     title: "Memoirs of a Geisha",
     author: "Arthur Golden",
     published_date: "1997-09-27",
