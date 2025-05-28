@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Book } from "@/app/book-data";
+import { Book } from "@/app/types";
 
 export default function ForLaterList({
   initialForLaterBooks,
@@ -12,15 +12,26 @@ export default function ForLaterList({
     useState<Book[]>(initialForLaterBooks);
 
   const removeFromShelf = async (id: string) => {
-    const response = await fetch(`http://localhost:3000/api/for_later/${id}`, {
-      cache: "no-cache",
-      method: "DELETE",
-      headers: {
-        Authorization: "Bearer faketoken123",
-      },
-    });
-    const updatedForLaterBooks = await response.json();
-    setForLaterBooks(updatedForLaterBooks);
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/for_later/${id}`,
+        {
+          cache: "no-cache",
+          method: "DELETE",
+          headers: {
+            Authorization: "Bearer faketoken123",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to remove book from shelf");
+      }
+      setForLaterBooks((prevBooks) =>
+        prevBooks.filter((book) => book.id !== id)
+      );
+    } catch (error) {
+      console.error("Failed to remove book from shelf:", error);
+    }
   };
 
   return (

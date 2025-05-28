@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Book } from "@/app/book-data";
+import { Book, UserCheckedOut, UserOnHold } from "@/app/types";
 import Image from "next/image";
 
 export default function GenreBookList({
@@ -35,9 +35,11 @@ export default function GenreBookList({
           if (user) {
             console.log("User data:", user);
             // Set userCheckedOut to the ids of the books in the checked_out shelf
-            setUserCheckedOut(user.checked_out.map((item: any) => item.id));
+            setUserCheckedOut(
+              user.checked_out.map((item: UserCheckedOut) => item.id)
+            );
             setUserForLater(user.for_later);
-            setUserHold(user.on_hold.map((item: any) => item.id));
+            setUserHold(user.on_hold.map((item: UserOnHold) => item.id));
           } else {
             setUserCheckedOut([]);
           }
@@ -58,40 +60,48 @@ export default function GenreBookList({
   const hold = async (bookId: string) => {
     const isInHold = userHold.includes(bookId);
     const method = isInHold ? "DELETE" : "PUT";
-    const response = await fetch(`http://localhost:3000/api/hold/${bookId}`, {
-      method,
-      headers: {
-        Authorization: "Bearer faketoken123",
-      },
-    });
-    if (response.ok) {
-      // Get updated user data from response
-      const updatedUser = await response.json();
 
-      // Update userHold state
-      if (updatedUser.on_hold) {
-        setUserHold(updatedUser.on_hold.map((item: any) => item.id));
+    try {
+      const response = await fetch(`http://localhost:3000/api/hold/${bookId}`, {
+        method,
+        headers: {
+          Authorization: "Bearer faketoken123",
+        },
+      });
+      if (response.ok) {
+        // Get updated user data from response
+        const updatedUser = await response.json();
+
+        // Update userHold state
+        if (updatedUser.on_hold) {
+          setUserHold(updatedUser.on_hold.map((item: UserOnHold) => item.id));
+        }
+
+        // Update userCheckedOut state
+        if (updatedUser.checked_out) {
+          setUserCheckedOut(
+            updatedUser.checked_out.map((item: UserCheckedOut) => item.id)
+          );
+        }
+
+        // Update the books state
+        setBooks((prevBooks) =>
+          prevBooks.map((book) =>
+            book.id === bookId
+              ? {
+                  ...book,
+                  num_of_holds: isInHold
+                    ? book.num_of_holds - 1
+                    : book.num_of_holds + 1,
+                }
+              : book
+          )
+        );
+      } else {
+        alert("Failed to update hold");
       }
-
-      // Update userCheckedOut state
-      if (updatedUser.checked_out) {
-        setUserCheckedOut(updatedUser.checked_out.map((item: any) => item.id));
-      }
-
-      // Update the books state
-      setBooks((prevBooks) =>
-        prevBooks.map((book) =>
-          book.id === bookId
-            ? {
-                ...book,
-                num_of_holds: isInHold
-                  ? book.num_of_holds - 1
-                  : book.num_of_holds + 1,
-              }
-            : book
-        )
-      );
-    } else {
+    } catch (error) {
+      console.error("Error updating hold:", error);
       alert("Failed to update hold");
     }
   };
@@ -99,28 +109,34 @@ export default function GenreBookList({
   const forLater = async (bookId: string) => {
     const isInForLater = userForLater.includes(bookId);
     const method = isInForLater ? "DELETE" : "PUT";
-    const response = await fetch(
-      `http://localhost:3000/api/for_later/${bookId}`,
-      {
-        method,
-        headers: {
-          Authorization: "Bearer faketoken123",
-        },
-      }
-    );
-    if (response.ok) {
-      // Get updated user data from response
-      const updatedUser = await response.json();
 
-      // Update userForLater state
-      if (isInForLater) {
-        setUserForLater(
-          updatedUser.for_later.filter((id: string) => id !== bookId)
-        );
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/for_later/${bookId}`,
+        {
+          method,
+          headers: {
+            Authorization: "Bearer faketoken123",
+          },
+        }
+      );
+      if (response.ok) {
+        // Get updated user data from response
+        const updatedUser = await response.json();
+
+        // Update userForLater state
+        if (isInForLater) {
+          setUserForLater(
+            updatedUser.for_later.filter((id: string) => id !== bookId)
+          );
+        } else {
+          setUserForLater([...userForLater, bookId]);
+        }
       } else {
-        setUserForLater([...userForLater, bookId]);
+        alert("Failed to update shelf");
       }
-    } else {
+    } catch (error) {
+      console.error("Error updating shelf:", error);
       alert("Failed to update shelf");
     }
   };
