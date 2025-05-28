@@ -9,51 +9,31 @@ const genres: string[] = [
   "Historical",
 ];
 
-// Color mapping for each genre
-const genreColors = [
-  "bg-rose-500",
-  "bg-amber-400",
-  "bg-teal-600",
-  "bg-rose-500",
-  "bg-amber-400",
-  "bg-teal-600",
-];
-
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
-      <header className="p-6 flex justify-center items-center">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+    <main className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-slate-900 mb-4 tracking-tight">
             Welcome to the Library App!
           </h1>
-          <p className="text-gray-600 dark:text-gray-300 mt-2">
+          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
             Choose a genre you wish to browse.
           </p>
         </div>
-      </header>
 
-      <main className="px-6 pb-12 pt-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto justify-center">
-          {genres.map((genre: string, index: number) => (
-            <Link key={genre} href={`/genre/${genre}`} className="group">
-              <div
-                className={`
-                aspect-video rounded-lg p-6 flex items-center justify-center
-                ${genreColors[index] || "bg-gray-500 dark:bg-gray-600"}
-                hover:scale-105 transform transition-all duration-300 ease-in-out
-                shadow-lg hover:shadow-xl
-                cursor-pointer
-              `}
-              >
-                <h2 className="text-white font-semibold text-2xl text-center leading-tight">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {genres.map((genre: string) => (
+            <Link key={genre} href={`/genre/${genre}`} className="block">
+              <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 h-full border border-slate-200 hover:border-slate-300">
+                <h2 className="text-xl font-semibold text-slate-800 text-center">
                   {genre}
                 </h2>
               </div>
             </Link>
           ))}
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

@@ -185,27 +185,17 @@ export default function GenreBookList({
         return (
           <div
             key={book.id}
-            className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 hover:shadow-lg transition-shadow duration-200"
+            className="bg-white rounded-lg shadow-md shadow-gray-400 overflow-hidden border border-slate-300"
           >
             <div className="aspect-[3/4] relative bg-gray-100">
               <Image
-                src={book.book_cover || "/placeholder.svg"}
+                src={book.book_cover}
                 alt={`${book.title} cover`}
                 fill
-                className="object-cover"
+                className="object-cove shadow-md shadow-gray-300"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
               />
-              <div className="absolute top-2 right-2">
-                <span
-                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                    isAvailable
-                      ? "bg-green-100 text-green-800"
-                      : "bg-red-100 text-red-800"
-                  }`}
-                >
-                  {isAvailable ? "Available" : "All copies in use"}
-                </span>
-              </div>
+              <div className="absolute top-2 right-2"></div>
             </div>
 
             <div className="p-4">
@@ -225,8 +215,19 @@ export default function GenreBookList({
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <BookOpen className="w-4 h-4" />
-                  <span>
+                  <BookOpen className="w-4 h-4 " />
+                  <span
+                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                      isAvailable
+                        ? "bg-green-100 text-green-800"
+                        : "bg-red-100 text-red-800"
+                    }`}
+                  >
+                    {isAvailable ? "Available" : "All copies in use"}
+                  </span>
+                </div>
+                <div>
+                  <span className="text-xs text-gray-500">
                     {book.num_of_holds} holds on {book.num_of_copies} copies
                   </span>
                 </div>
@@ -246,7 +247,7 @@ export default function GenreBookList({
                   </button>
                 ) : hasHold ? (
                   <button
-                    className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                    className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors cursor-pointer"
                     onClick={() => hold(book.id)}
                   >
                     Cancel Hold
