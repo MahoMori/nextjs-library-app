@@ -48,39 +48,6 @@ export default function GenreBookList({
         .finally(() => {
           setLoading(false);
         });
-
-      // fetch("http://localhost:3000/api/for_later", {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // })
-      //   .then((res) => (res.ok ? res.json() : []))
-      //   .then((forLaterBooks: Book[]) => {
-      //     console.log("For later books:", forLaterBooks);
-      //     // Set userForLater to the ids of the books in the for_later shelf
-      //     setUserForLater(forLaterBooks.map((book) => book.id));
-      //   })
-      //   .catch(() => {
-      //     setUserForLater([]);
-      //   });
-
-      // fetch("http://localhost:3000/api/hold", {
-      //   headers: {
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      // })
-      //   .then((res) => (res.ok ? res.json() : []))
-      //   .then((onHoldBooks: Book[]) => {
-      //     console.log("On hold books:", onHoldBooks);
-      //     // Set userForLater to the ids of the books in the for_later shelf
-      //     setUserHold(onHoldBooks.map((book) => book.id));
-      //     setUserCheckedOut(onHoldBooks.map((book) => book.id));
-      //   })
-      //   .catch(() => {
-      //     setUserHold([]);
-      //   });
-
-      // setLoading(false);
     } else {
       setUserForLater([]);
       setUserHold([]);
@@ -142,8 +109,14 @@ export default function GenreBookList({
       }
     );
     if (response.ok) {
+      // Get updated user data from response
+      const updatedUser = await response.json();
+
+      // Update userForLater state
       if (isInForLater) {
-        setUserForLater(userForLater.filter((id) => id !== bookId));
+        setUserForLater(
+          updatedUser.for_later.filter((id: string) => id !== bookId)
+        );
       } else {
         setUserForLater([...userForLater, bookId]);
       }

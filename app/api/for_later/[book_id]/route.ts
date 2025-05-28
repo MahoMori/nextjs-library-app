@@ -38,14 +38,10 @@ export async function PUT(
     .collection("users")
     .updateOne({ uid }, { $addToSet: { for_later: bookId } as never });
 
-  // Fetch updated for_later books
+  // Fetch updated user
   const updatedUser = await db.collection("users").findOne({ uid });
-  const books = await db
-    .collection("books")
-    .find({ id: { $in: updatedUser!.for_later } })
-    .toArray();
 
-  return new Response(JSON.stringify(books), {
+  return new Response(JSON.stringify(updatedUser), {
     status: 200,
     headers: {
       "Content-Type": "application/json",
@@ -88,14 +84,10 @@ export async function DELETE(
     .collection("users")
     .updateOne({ uid }, { $pull: { for_later: bookId } as never });
 
-  // Fetch updated for_later books
+  // Fetch updated user
   const updatedUser = await db.collection("users").findOne({ uid });
-  const books = await db
-    .collection("books")
-    .find({ id: { $in: updatedUser!.for_later } })
-    .toArray();
 
-  return new Response(JSON.stringify(books), {
+  return new Response(JSON.stringify(updatedUser), {
     status: 200,
     headers: {
       "Content-Type": "application/json",
