@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Book, UserCheckedOut, UserOnHold } from "@/app/types";
 import Image from "next/image";
+import { Calendar, User, BookOpen, Clock } from "lucide-react";
 
 export default function GenreBookList({
   initialBooks,
@@ -142,75 +143,111 @@ export default function GenreBookList({
   };
 
   return (
-    <>
-      {loading ? (
-        <div className="flex justify-center items-center h-40">
-          <span className="text-lg text-gray-400">Loading...</span>
-        </div>
-      ) : (
-        books.map((book: Book) => (
-          <div key={book.id} className="p-4 border rounded-md mb-4">
-            <h2 className="text-xl font-bold">{book.title}</h2>
-            <p className="text-gray-100">Author: {book.author}</p>
-            <p className="text-gray-100">Published: {book.published_date}</p>
-            <p className="text-gray-100">
-              {book.num_of_holds >= book.num_of_copies
-                ? "All copies in use"
-                : "Available"}
-            </p>
-            <p className="text-gray-100">
-              Holds: {book.num_of_holds} on {book.num_of_copies} copies
-            </p>
-            <Image
-              src={book.book_cover}
-              alt={`${book.title} cover`}
-              width={150}
-              height={200}
-              className="mt-2"
-            />
-            <div className="space-x-1">
-              {userCheckedOut.includes(book.id) ? (
-                <button
-                  className="rounded-sm bg-green-400"
-                  onClick={() => alert("Already checked out")}
-                >
-                  Already checked out
-                </button>
-              ) : userHold.includes(book.id) ? (
-                <button
-                  className="cursor-pointer rounded-sm bg-blue-400"
-                  onClick={() => hold(book.id)}
-                >
-                  Cancel hold
-                </button>
-              ) : (
-                <button
-                  className="cursor-pointer rounded-sm bg-blue-400"
-                  onClick={() => hold(book.id)}
-                >
-                  Place hold
-                </button>
-              )}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6">
+      {books.map((book: Book) => {
+        const isAvailable = book.num_of_holds < book.num_of_copies;
+        const isCheckedOut = userCheckedOut.includes(book.id);
+        const hasHold = userHold.includes(book.id);
+        const isForLater = userForLater.includes(book.id);
 
-              {userForLater.includes(book.id) ? (
-                <button
-                  className="cursor-pointer rounded-sm bg-red-400"
-                  onClick={() => forLater(book.id)}
+        return (
+          <div
+            key={book.id}
+            className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-200"
+          >
+            <div className="aspect-[3/4] relative bg-gray-100">
+              <Image
+                src={book.book_cover || "/placeholder.svg"}
+                alt={`${book.title} cover`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              />
+              <div className="absolute top-2 right-2">
+                <span
+                  className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                    isAvailable
+                      ? "bg-green-100 text-green-800"
+                      : "bg-red-100 text-red-800"
+                  }`}
                 >
-                  Remove From Shelf
-                </button>
-              ) : (
-                <button
-                  className="cursor-pointer rounded-sm bg-red-400"
-                  onClick={() => forLater(book.id)}
-                >
-                  For later
-                </button>
-              )}
+                  {isAvailable ? "Available" : "All copies in use"}
+                </span>
+              </div>
+            </div>
+
+            <div className="p-4">
+              <h2 className="font-bold text-lg mb-2 line-clamp-2 leading-tight text-gray-900">
+                {book.title}
+              </h2>
+
+              <div className="space-y-2 text-sm text-gray-600">
+                <div className="flex items-center gap-2">
+                  <User className="w-4 h-4" />
+                  <span className="truncate">{book.author}</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <Calendar className="w-4 h-4" />
+                  <span>{book.published_date}</span>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <BookOpen className="w-4 h-4" />
+                  <span>
+                    {book.num_of_holds} holds on {book.num_of_copies} copies
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 pt-0 flex flex-col gap-2">
+              <div className="flex gap-2 w-full">
+                {isCheckedOut ? (
+                  <button
+                    className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-sm font-medium text-gray-500 cursor-not-allowed"
+                    onClick={() => alert("Already checked out")}
+                    disabled
+                  >
+                    <Clock className="w-4 h-4 mr-2" />
+                    Checked Out
+                  </button>
+                ) : hasHold ? (
+                  <button
+                    className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+                    onClick={() => hold(book.id)}
+                  >
+                    Cancel Hold
+                  </button>
+                ) : (
+                  <button
+                    className={`flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors ${
+                      isAvailable
+                        ? "bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
+                        : "bg-gray-400 cursor-not-allowed"
+                    }`}
+                    onClick={() => hold(book.id)}
+                    disabled={!isAvailable}
+                  >
+                    Place Hold
+                  </button>
+                )}
+              </div>
+
+              <button
+                className={`w-full inline-flex items-center justify-center px-4 py-2 border rounded-md shadow-sm text-sm font-medium transition-colors ${
+                  isForLater
+                    ? "border-red-300 bg-red-50 text-red-700 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                }`}
+                onClick={() => forLater(book.id)}
+              >
+                {isForLater ? "Remove From Shelf" : "Save For Later"}
+              </button>
             </div>
           </div>
-        ))
-      )}
-    </>
+        );
+      })}
+    </div>
   );
 }

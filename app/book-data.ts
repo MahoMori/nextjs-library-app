@@ -794,13 +794,3 @@ export const books: Book[] = [
     book_cover: "https://covers.openlibrary.org/b/isbn/9780679781585-L.jpg",
   },
 ];
-
-export const genres: string[] = [
-  "Fiction",
-  "Fantasy",
-  "Mystery",
-  "Science Fiction",
-  "Non-Fiction",
-  "Biography",
-  "Historical",
-];
