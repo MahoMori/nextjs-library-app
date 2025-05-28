@@ -8,6 +8,7 @@ export interface Book {
   num_of_holds: number;
   num_of_copies: number;
   book_cover: string;
+  usernum_in_line?: number;
 }
 
 export const books: Book[] = [

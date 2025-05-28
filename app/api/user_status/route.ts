@@ -25,28 +25,7 @@ export async function GET(request: NextRequest) {
     return new Response("User not found!", { status: 404 });
   }
 
-  // Step 1: Extract book IDs and create a map for usernum_in_line
-  const holdMap = new Map<string, number>();
-  const bookIds = user.on_hold.map(
-    (hold: { id: string; usernum_in_line: number }) => {
-      holdMap.set(hold.id, hold.usernum_in_line);
-      return hold.id;
-    }
-  );
-
-  // Step 2: Query books by IDs
-  const books = await db
-    .collection("books")
-    .find({ id: { $in: bookIds } })
-    .toArray();
-
-  // Step 3: Attach usernum_in_line to each book
-  const booksWithLine = books.map((book) => ({
-    ...book,
-    usernum_in_line: holdMap.get(book.id) ?? null,
-  }));
-
-  return new Response(JSON.stringify(booksWithLine), {
+  return new Response(JSON.stringify(user), {
     status: 200,
     headers: {
       "Content-Type": "application/json",
