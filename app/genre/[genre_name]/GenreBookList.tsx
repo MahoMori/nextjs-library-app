@@ -175,7 +175,7 @@ export default function GenreBookList({
   }
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-10 max-w-6xl mx-auto">
+    <>
       {books.map((book: Book) => {
         const isAvailable = book.num_of_holds < book.num_of_copies;
         const isCheckedOut = userCheckedOut.includes(book.id);
@@ -185,24 +185,23 @@ export default function GenreBookList({
         return (
           <div
             key={book.id}
-            className="bg-white rounded-lg shadow-md shadow-gray-400 overflow-hidden border border-slate-300"
+            className="bg-white rounded-lg shadow-md shadow-gray-400 overflow-hidden border border-slate-300 flex flex-col" // <-- add flex flex-col here
           >
             <div className="aspect-[3/4] relative bg-gray-100">
               <Image
                 src={book.book_cover}
                 alt={`${book.title} cover`}
                 fill
-                className="object-cove shadow-md shadow-gray-300"
+                className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
               />
               <div className="absolute top-2 right-2"></div>
             </div>
 
-            <div className="p-4">
+            <div className="p-4 flex-1 flex flex-col">
               <h2 className="font-bold text-lg mb-2 line-clamp-2 leading-tight text-gray-900">
                 {book.title}
               </h2>
-
               <div className="space-y-2 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <User className="w-4 h-4" />
@@ -261,7 +260,6 @@ export default function GenreBookList({
                   </button>
                 )}
               </div>
-
               <button
                 className={`w-full inline-flex items-center justify-center px-4 py-2 border rounded-md shadow-sm text-sm font-medium transition-colors  cursor-pointer ${
                   isForLater
@@ -276,6 +274,6 @@ export default function GenreBookList({
           </div>
         );
       })}
-    </div>
+    </>
   );
 }
