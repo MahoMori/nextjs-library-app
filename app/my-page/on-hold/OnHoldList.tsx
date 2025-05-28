@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Book } from "@/app/types";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function OnHoldList({
   initialOnHoldBooks,
@@ -270,7 +271,10 @@ export default function OnHoldList({
                 When you place a hold on a popular book, it will appear here
                 with your position in the queue.
               </p>
-              <button className="bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2">
+              <Link
+                href="/"
+                className="bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer"
+              >
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -285,7 +289,7 @@ export default function OnHoldList({
                   />
                 </svg>
                 Browse Books
-              </button>
+              </Link>
             </div>
           </div>
         )}
