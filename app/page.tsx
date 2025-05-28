@@ -21,7 +21,7 @@ const genreColors = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
+    <div className="min-h-screen">
       <header className="p-6 flex justify-center items-center">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">

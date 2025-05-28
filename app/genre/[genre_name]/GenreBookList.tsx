@@ -142,8 +142,40 @@ export default function GenreBookList({
     }
   };
 
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="flex flex-col items-center gap-2">
+          <svg
+            className="animate-spin h-20 w-20 text-amber-400"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+            ></path>
+          </svg>
+          <span className="text-amber-400 font-medium text-2xl pt-5">
+            Loading books...
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 p-10 max-w-6xl mx-auto">
       {books.map((book: Book) => {
         const isAvailable = book.num_of_holds < book.num_of_copies;
         const isCheckedOut = userCheckedOut.includes(book.id);
@@ -153,7 +185,7 @@ export default function GenreBookList({
         return (
           <div
             key={book.id}
-            className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow duration-200"
+            className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-300 hover:shadow-lg transition-shadow duration-200"
           >
             <div className="aspect-[3/4] relative bg-gray-100">
               <Image
@@ -221,13 +253,8 @@ export default function GenreBookList({
                   </button>
                 ) : (
                   <button
-                    className={`flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors ${
-                      isAvailable
-                        ? "bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500"
-                        : "bg-gray-400 cursor-not-allowed"
-                    }`}
+                    className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 cursor-pointer"
                     onClick={() => hold(book.id)}
-                    disabled={!isAvailable}
                   >
                     Place Hold
                   </button>
@@ -235,10 +262,10 @@ export default function GenreBookList({
               </div>
 
               <button
-                className={`w-full inline-flex items-center justify-center px-4 py-2 border rounded-md shadow-sm text-sm font-medium transition-colors ${
+                className={`w-full inline-flex items-center justify-center px-4 py-2 border rounded-md shadow-sm text-sm font-medium transition-colors  cursor-pointer ${
                   isForLater
-                    ? "border-red-300 bg-red-50 text-red-700 hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    ? "border-red-300 bg-red-50 text-red-700 hover:bg-red-100 focus:outline-none"
+                    : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none"
                 }`}
                 onClick={() => forLater(book.id)}
               >
