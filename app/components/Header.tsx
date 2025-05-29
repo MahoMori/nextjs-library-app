@@ -1,17 +1,66 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Menu, X, BookOpen, User, Home, LogIn } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import {
+  Menu,
+  X,
+  BookOpen,
+  User,
+  Home,
+  LogIn,
+  ChevronDown,
+  Clock,
+  Heart,
+} from "lucide-react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMyPageDropdownOpen, setIsMyPageDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  const navigation = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "My Page", href: "/my-page", icon: User },
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsMyPageDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const myPageLinks = [
+    {
+      name: "My Page",
+      href: "/my-page",
+      icon: User,
+      description: "Overview of your library",
+    },
+    {
+      name: "Checked Out",
+      href: "/my-page/checked-out",
+      icon: BookOpen,
+      description: "Currently borrowed books",
+    },
+    {
+      name: "On Hold",
+      href: "/my-page/on-hold",
+      icon: Clock,
+      description: "Reserved books waiting",
+    },
+    {
+      name: "For Later",
+      href: "/my-page/for-later",
+      icon: Heart,
+      description: "Your reading wishlist",
+    },
   ];
 
   return (
@@ -32,19 +81,59 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            {navigation.map((item) => {
-              const Icon = item.icon;
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="flex items-center gap-2 text-slate-600 hover:text-blue-600 font-medium transition-colors duration-200 group"
+            {/* Home Link */}
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-slate-600 hover:text-blue-600 font-medium transition-colors duration-200 group"
+            >
+              <Home className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+              Home
+            </Link>
+
+            {/* My Page Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setIsMyPageDropdownOpen(!isMyPageDropdownOpen)}
+                onMouseEnter={() => setIsMyPageDropdownOpen(true)}
+                className="flex items-center gap-2 text-slate-600 hover:text-blue-600 font-medium transition-colors duration-200 group"
+              >
+                <User className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+                My Library
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    isMyPageDropdownOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {/* Dropdown Menu */}
+              {isMyPageDropdownOpen && (
+                <div
+                  className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-slate-200 py-2 z-50"
+                  onMouseLeave={() => setIsMyPageDropdownOpen(false)}
                 >
-                  <Icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
-                  {item.name}
-                </Link>
-              );
-            })}
+                  {myPageLinks.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={() => setIsMyPageDropdownOpen(false)}
+                        className="flex items-start gap-3 px-4 py-3 text-slate-600 hover:text-blue-600 hover:bg-slate-50 transition-colors duration-200 group"
+                      >
+                        <Icon className="w-5 h-5 mt-0.5 group-hover:scale-110 transition-transform duration-200 flex-shrink-0" />
+                        <div>
+                          <div className="font-medium">{item.name}</div>
+                          <div className="text-xs text-slate-500 mt-0.5">
+                            {item.description}
+                          </div>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Right Side Actions */}
@@ -76,27 +165,48 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden border-t border-slate-200 py-4">
-            <nav className="flex flex-col gap-4">
-              {navigation.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center gap-3 text-slate-600 hover:text-blue-600 font-medium transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-slate-50"
-                  >
-                    <Icon className="w-5 h-5" />
-                    {item.name}
-                  </Link>
-                );
-              })}
+            <nav className="flex flex-col gap-2">
+              {/* Home Link */}
+              <Link
+                href="/"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center gap-3 text-slate-600 hover:text-blue-600 font-medium transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-slate-50"
+              >
+                <Home className="w-5 h-5" />
+                Home
+              </Link>
+
+              {/* My Page Links */}
+              <div className="border-t border-slate-200 pt-2 mt-2">
+                <div className="text-xs font-medium text-slate-500 px-3 py-1 uppercase tracking-wider">
+                  My Library
+                </div>
+                {myPageLinks.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-start gap-3 text-slate-600 hover:text-blue-600 font-medium transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-slate-50"
+                    >
+                      <Icon className="w-5 h-5 mt-0.5 flex-shrink-0" />
+                      <div>
+                        <div>{item.name}</div>
+                        <div className="text-xs text-slate-500 mt-0.5">
+                          {item.description}
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
 
               {/* Mobile Sign In */}
               <Link
                 href="/sign-in"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 mt-2"
+                className="flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 mt-4"
               >
                 <LogIn className="w-5 h-5" />
                 Sign In
