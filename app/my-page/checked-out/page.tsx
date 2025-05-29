@@ -19,12 +19,7 @@ export default async function CheckedOutPage() {
 
     const checkedOutBooks: Book[] = await response.json();
 
-    return (
-      <div>
-        <h1 className="text-2xl font-bold mb-4">Checked Out</h1>
-        <CheckedOutList initialCheckedOutBooks={checkedOutBooks} />
-      </div>
-    );
+    return <CheckedOutList initialCheckedOutBooks={checkedOutBooks} />;
   } catch (error) {
     return <div>Something went wrong.</div>;
   }
