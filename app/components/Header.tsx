@@ -2,12 +2,10 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Moon, Sun, Menu, X, BookOpen, User, Home, LogIn } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Menu, X, BookOpen, User, Home, LogIn } from "lucide-react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -17,7 +15,7 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm border-b border-slate-200 dark:border-slate-700">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -26,7 +24,7 @@ export default function Header() {
               <BookOpen className="w-6 h-6 text-white" />
             </div>
             <div className="hidden sm:block">
-              <h1 className="text-xl font-bold text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+              <h1 className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
                 Library App
               </h1>
             </div>
@@ -40,7 +38,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-200 group"
+                  className="flex items-center gap-2 text-slate-600 hover:text-blue-600 font-medium transition-colors duration-200 group"
                 >
                   <Icon className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
                   {item.name}
@@ -51,24 +49,10 @@ export default function Header() {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-4">
-            {/* Theme Toggle */}
-            {/* <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors duration-200 group"
-              aria-label="Toggle theme"
-            >
-              <Sun
-                className={`w-5 h-5 text-slate-600 dark:text-slate-300 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 group-hover:text-amber-500 ${
-                  theme === "dark" ? "hidden" : "block"
-                }`}
-              />
-              <Moon className="absolute w-5 h-5 text-slate-600 dark:text-slate-300 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 group-hover:text-blue-400" />
-            </button> */}
-
             {/* Sign In Button */}
             <Link
               href="/sign-in"
-              className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 group"
+              className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 group"
             >
               <LogIn className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
               Sign In
@@ -77,13 +61,13 @@ export default function Header() {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
-              className="md:hidden p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors duration-200"
+              className="md:hidden p-2 rounded-lg bg-slate-100 hover:bg-slate-200 transition-colors duration-200"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
-                <X className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+                <X className="w-5 h-5 text-slate-600" />
               ) : (
-                <Menu className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+                <Menu className="w-5 h-5 text-slate-600" />
               )}
             </button>
           </div>
@@ -91,7 +75,7 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 dark:border-slate-700 py-4">
+          <div className="md:hidden border-t border-slate-200 py-4">
             <nav className="flex flex-col gap-4">
               {navigation.map((item) => {
                 const Icon = item.icon;
@@ -100,7 +84,7 @@ export default function Header() {
                     key={item.name}
                     href={item.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className="flex items-center gap-3 text-slate-600 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800"
+                    className="flex items-center gap-3 text-slate-600 hover:text-blue-600 font-medium transition-colors duration-200 py-2 px-3 rounded-lg hover:bg-slate-50"
                   >
                     <Icon className="w-5 h-5" />
                     {item.name}
@@ -112,7 +96,7 @@ export default function Header() {
               <Link
                 href="/sign-in"
                 onClick={() => setIsMenuOpen(false)}
-                className="flex items-center gap-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 mt-2"
+                className="flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 mt-2"
               >
                 <LogIn className="w-5 h-5" />
                 Sign In

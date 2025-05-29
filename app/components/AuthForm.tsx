@@ -53,7 +53,7 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 flex items-center justify-center p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex items-center justify-center p-6">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
@@ -62,10 +62,10 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
               <BookOpen className="w-8 h-8 text-white" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold text-slate-800 dark:text-white mb-2">
+          <h1 className="text-3xl font-bold text-slate-800 mb-2">
             {authMode === "signin" ? "Welcome Back" : "Join Library App"}
           </h1>
-          <p className="text-slate-600 dark:text-slate-300">
+          <p className="text-slate-600">
             {authMode === "signin"
               ? "Sign in to access your digital library"
               : "Create your account to get started"}
@@ -73,14 +73,14 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
         </div>
 
         {/* Auth Mode Toggle */}
-        {/* <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 p-1 mb-6">
+        {/* <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-1 mb-6">
           <div className="grid grid-cols-2 gap-1">
             <button
               onClick={() => setAuthMode("signin")}
               className={`py-3 px-4 rounded-lg font-medium transition-all duration-200 cursor-pointer ${
                 authMode === "signin"
                   ? "bg-blue-600 text-white shadow-md"
-                  : "text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-white"
+                  : "text-slate-600 hover:text-slate-800"
               }`}
             >
               Sign In
@@ -90,7 +90,7 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
               className={`py-3 px-4 rounded-lg font-medium transition-all duration-200 cursor-pointer ${
                 authMode === "signup"
                   ? "bg-blue-600 text-white shadow-md"
-                  : "text-slate-600 dark:text-slate-300 hover:text-slate-800 dark:hover:text-white"
+                  : "text-slate-600 hover:text-slate-800"
               }`}
             >
               Sign Up
@@ -99,14 +99,14 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
         </div> */}
 
         {/* Form */}
-        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 p-8">
+        <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name Field (Sign Up Only) */}
             {authMode === "signup" && (
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                  className="block text-sm font-medium text-slate-700 mb-2"
                 >
                   Full Name
                 </label>
@@ -121,7 +121,7 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
                     required={authMode === "signup"}
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="block w-full pl-10 pr-3 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-lg bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -132,7 +132,7 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                className="block text-sm font-medium text-slate-700 mb-2"
               >
                 Email Address
               </label>
@@ -147,7 +147,7 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="block w-full pl-10 pr-3 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  className="block w-full pl-10 pr-3 py-3 border border-slate-300 rounded-lg bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   placeholder="Enter your email"
                 />
               </div>
@@ -157,7 +157,7 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                className="block text-sm font-medium text-slate-700 mb-2"
               >
                 Password
               </label>
@@ -172,13 +172,13 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
                   required
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="block w-full pl-10 pr-12 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                  className="block w-full pl-10 pr-12 py-3 border border-slate-300 rounded-lg bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                   placeholder="Enter your password"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
                 >
                   {showPassword ? (
                     <EyeOff className="h-5 w-5" />
@@ -194,7 +194,7 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
               <div>
                 <label
                   htmlFor="confirmPassword"
-                  className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2"
+                  className="block text-sm font-medium text-slate-700 mb-2"
                 >
                   Confirm Password
                 </label>
@@ -209,13 +209,13 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
                     required={authMode === "signup"}
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
-                    className="block w-full pl-10 pr-12 py-3 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="block w-full pl-10 pr-12 py-3 border border-slate-300 rounded-lg bg-white text-slate-900 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
                     placeholder="Confirm your password"
                   />
                   <button
                     type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600"
                   >
                     {showConfirmPassword ? (
                       <EyeOff className="h-5 w-5" />
@@ -232,7 +232,7 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
               <div className="flex justify-end">
                 <button
                   type="button"
-                  className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium cursor-pointer"
+                  className="text-sm text-blue-600 hover:text-blue-700 font-medium cursor-pointer"
                 >
                   Forgot your password?
                 </button>
@@ -247,23 +247,20 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
                   name="terms"
                   type="checkbox"
                   required
-                  className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 dark:border-slate-600 rounded"
+                  className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-slate-300 rounded"
                 />
-                <label
-                  htmlFor="terms"
-                  className="text-sm text-slate-600 dark:text-slate-300"
-                >
+                <label htmlFor="terms" className="text-sm text-slate-600">
                   I agree to the{" "}
                   <button
                     type="button"
-                    className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+                    className="text-blue-600 hover:underline cursor-pointer"
                   >
                     Terms of Service
                   </button>{" "}
                   and{" "}
                   <button
                     type="button"
-                    className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+                    className="text-blue-600 hover:underline cursor-pointer"
                   >
                     Privacy Policy
                   </button>
@@ -295,13 +292,13 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
 
           {/* Alternative Action */}
           <div className="mt-6 text-center">
-            <p className="text-slate-600 dark:text-slate-300">
+            <p className="text-slate-600">
               {authMode === "signin"
                 ? "Don't have an account?"
                 : "Already have an account?"}{" "}
               <button
                 onClick={toggleAuthMode}
-                className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium hover:underline cursor-pointer"
+                className="text-blue-600 hover:text-blue-700 font-medium hover:underline cursor-pointer"
               >
                 {authMode === "signin" ? "Sign up here" : "Sign in here"}
               </button>
