@@ -40,10 +40,82 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    if (authMode === "signin") {
+      if (!formData.email || !formData.password) {
+        alert("Email and password are required");
+        setIsLoading(false);
+        return;
+      }
+      try {
+        const response = await fetch("/api/sign_in", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
 
-    console.log("Form submitted:", { authMode, formData });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText || "Failed to sign in");
+        }
+
+        // Redirect to the previsous page or home page
+        if (window.history.length > 2) {
+          window.history.back();
+          return;
+        }
+        window.location.href = "/";
+      } catch (error) {
+        console.error("Error signing in:", error);
+        alert("Failed to sign in. Please try again.");
+        setIsLoading(false);
+        return;
+      }
+    }
+
+    if (authMode === "signup") {
+      if (!formData.name || !formData.email || !formData.password) {
+        alert("All fields are required");
+        setIsLoading(false);
+        return;
+      }
+      if (!formData.confirmPassword) {
+        alert("Please confirm your password");
+        setIsLoading(false);
+        return;
+      }
+      if (formData.confirmPassword !== formData.password) {
+        alert("Passwords do not match");
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        const response = await fetch("/api/sign_up", {
+          method: "POST",
+          headers: {
+            ContentType: "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(errorText || "Failed to create account");
+        }
+
+        // Redirect to the previsous page or home page
+        if (window.history.length > 2) {
+          window.history.back();
+          return;
+        }
+        window.location.href = "/";
+      } catch (error) {
+        console.error("Error signing up:", error);
+        alert("Failed to create account. Please try again.");
+        setIsLoading(false);
+        return;
+      }
+    }
+
     setIsLoading(false);
   };
 
@@ -253,14 +325,14 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
                   I agree to the{" "}
                   <button
                     type="button"
-                    className="text-blue-600 hover:underline cursor-pointer"
+                    className="text-blue-600 hover:underline"
                   >
                     Terms of Service
                   </button>{" "}
                   and{" "}
                   <button
                     type="button"
-                    className="text-blue-600 hover:underline cursor-pointer"
+                    className="text-blue-600 hover:underline"
                   >
                     Privacy Policy
                   </button>
