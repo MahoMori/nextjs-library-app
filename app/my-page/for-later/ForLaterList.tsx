@@ -20,9 +20,6 @@ export default function ForLaterList({
         {
           cache: "no-cache",
           method: "DELETE",
-          headers: {
-            Authorization: "Bearer faketoken123",
-          },
         }
       );
       if (!response.ok) {

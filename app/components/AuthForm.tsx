@@ -102,15 +102,11 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
           throw new Error(errorText || "Failed to create account");
         }
 
-        // Redirect to the previsous page or home page
-        if (window.history.length > 2) {
-          window.history.back();
-          return;
-        }
-        window.location.href = "/";
+        // Redirect to the sign-in page
+        window.location.href = "/sign-in";
       } catch (error) {
         console.error("Error signing up:", error);
-        alert("Failed to create account. Please try again.");
+        alert(error);
         setIsLoading(false);
         return;
       }

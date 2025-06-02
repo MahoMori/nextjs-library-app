@@ -17,9 +17,6 @@ export default function OnHoldList({
       const response = await fetch(`http://localhost:3000/api/hold/${id}`, {
         cache: "no-cache",
         method: "DELETE",
-        headers: {
-          Authorization: "Bearer faketoken123",
-        },
       });
       if (!response.ok) {
         throw new Error("Failed to cancel hold");

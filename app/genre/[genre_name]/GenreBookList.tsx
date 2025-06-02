@@ -38,10 +38,16 @@ export default function GenreBookList({
           if (user) {
             // Set userCheckedOut to the ids of the books in the checked_out shelf
             setUserCheckedOut(
-              user.checked_out.map((item: UserCheckedOut) => item.id)
+              user.checked_out
+                ? user.checked_out.map((item: UserCheckedOut) => item.id)
+                : []
             );
-            setUserForLater(user.for_later);
-            setUserHold(user.on_hold.map((item: UserOnHold) => item.id));
+            setUserForLater(user.for_later ? user.for_later : []);
+            setUserHold(
+              user.on_hold
+                ? user.on_hold.map((item: UserOnHold) => item.id)
+                : []
+            );
           } else {
             setUserCheckedOut([]);
           }

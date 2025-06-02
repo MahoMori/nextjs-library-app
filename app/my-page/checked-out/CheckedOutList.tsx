@@ -19,10 +19,6 @@ export default function CheckedOutList({
         `http://localhost:3000/api/checked_out/${id}`,
         {
           cache: "no-cache",
-          method: "PUT",
-          headers: {
-            Authorization: "Bearer faketoken123",
-          },
         }
       );
       if (!response.ok) {
