@@ -1,6 +1,7 @@
 import { Book } from "@/app/types";
 import CheckedOutList from "./CheckedOutList";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function CheckedOutPage() {
   const cookieStore = await cookies();
@@ -14,15 +15,25 @@ export default async function CheckedOutPage() {
       },
     });
 
+    // User is not signed in
     if (response.status === 401) {
-      window.location.href = "/sign-in";
-      return <div>Unauthorized</div>;
+      redirect("/sign-in");
     }
+    // User is signed in but no user data found
     if (response.status === 404) {
-      return <div>No user found</div>;
+      return (
+        <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+          No user found
+        </div>
+      );
     }
+    // Other errors
     if (!response.ok) {
-      return <div>Failed to load books</div>;
+      return (
+        <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+          Failed to load books
+        </div>
+      );
     }
 
     const checkedOutBooks: Book[] = await response.json();
@@ -30,6 +41,10 @@ export default async function CheckedOutPage() {
     return <CheckedOutList initialCheckedOutBooks={checkedOutBooks} />;
   } catch (error) {
     console.error("Error fetching checked out books:", error);
-    return <div>Something went wrong.</div>;
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-gradient-to-br from-slate-50 to-slate-100 p-6">
+        Something went wrong.
+      </div>
+    );
   }
 }
