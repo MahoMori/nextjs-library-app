@@ -122,9 +122,6 @@ export default function GenreBookList({
         `http://localhost:3000/api/for_later/${bookId}`,
         {
           method,
-          headers: {
-            Authorization: "Bearer faketoken123",
-          },
         }
       );
       if (response.ok) {

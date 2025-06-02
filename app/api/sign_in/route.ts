@@ -25,11 +25,15 @@ export async function POST(request: NextRequest) {
     expiresIn: "1h",
   });
 
+  const isProd = process.env.NODE_ENV === "production";
+
   return new Response(JSON.stringify({ token }), {
     status: 200,
     headers: {
       "Content-Type": "application/json",
-      "Set-Cookie": `token=${token}; HttpOnly; Path=/; Max-Age=3600; SameSite=Strict`,
+      "Set-Cookie": `token=${token}; HttpOnly; Path=/; Max-Age=3600; SameSite=Strict; ${
+        isProd ? " Secure;" : ""
+      }`,
     },
   });
 }
