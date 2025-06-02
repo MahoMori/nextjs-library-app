@@ -32,15 +32,10 @@ export default function GenreBookList({
     if (token) {
       setLoading(true);
 
-      fetch("http://localhost:3000/api/user_status", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      fetch("http://localhost:3000/api/user_data")
         .then((res) => (res.ok ? res.json() : null))
         .then((user) => {
           if (user) {
-            console.log("User data:", user);
             // Set userCheckedOut to the ids of the books in the checked_out shelf
             setUserCheckedOut(
               user.checked_out.map((item: UserCheckedOut) => item.id)

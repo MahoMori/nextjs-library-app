@@ -12,7 +12,9 @@ import {
   ChevronDown,
   Clock,
   Heart,
+  LogOut,
 } from "lucide-react";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,6 +64,27 @@ export default function Header() {
       description: "Your reading wishlist",
     },
   ];
+
+  const { authorized } = useAuth();
+
+  const signOut = async () => {
+    try {
+      const response = await fetch("/api/sign_out", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to sign out");
+      }
+      // Optionally, redirect or update state after sign out
+      window.location.href = "/sign-in";
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
@@ -138,14 +161,24 @@ export default function Header() {
 
           {/* Right Side Actions */}
           <div className="flex items-center gap-4">
-            {/* Sign In Button */}
-            <Link
-              href="/sign-in"
-              className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 group"
-            >
-              <LogIn className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
-              Sign In
-            </Link>
+            {/* Sign In/Sign Out Button */}
+            {authorized ? (
+              <button
+                className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 group cursor-pointer"
+                onClick={signOut}
+              >
+                <LogOut className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+                Sign Out
+              </button>
+            ) : (
+              <Link
+                href="/sign-in"
+                className="hidden sm:flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors duration-200 group cursor-pointer"
+              >
+                <LogIn className="w-4 h-4 group-hover:scale-110 transition-transform duration-200" />
+                Sign In
+              </Link>
+            )}
 
             {/* Mobile Menu Button */}
             <button
@@ -202,15 +235,25 @@ export default function Header() {
                 })}
               </div>
 
-              {/* Mobile Sign In */}
-              <Link
-                href="/sign-in"
-                onClick={() => setIsMenuOpen(false)}
-                className="flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 mt-4"
-              >
-                <LogIn className="w-5 h-5" />
-                Sign In
-              </Link>
+              {/* Mobile Sign In/Sign Out */}
+              {authorized ? (
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 mt-4"
+                >
+                  <LogOut className="w-5 h-5" />
+                  Sign Out
+                </button>
+              ) : (
+                <Link
+                  href="/sign-in"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded-lg font-medium transition-colors duration-200 mt-4"
+                >
+                  <LogIn className="w-5 h-5" />
+                  Sign In
+                </Link>
+              )}
             </nav>
           </div>
         )}
