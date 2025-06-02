@@ -372,7 +372,7 @@ export default function CheckedOutList({
                 When you borrow books from the library, they will appear here
                 for easy tracking.
               </p>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors inline-flex items-center gap-2 cursor-pointer">
                 <svg
                   className="w-5 h-5"
                   fill="none"

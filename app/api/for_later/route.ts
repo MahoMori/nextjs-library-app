@@ -1,9 +1,8 @@
-import { NextRequest } from "next/server";
 import { connectToDb } from "@/app/api/db";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const { db } = await connectToDb();
 
   const cookieStore = await cookies();
@@ -21,6 +20,7 @@ export async function GET(request: NextRequest) {
     };
     uid = decoded.uid;
   } catch (err) {
+    console.error("JWT verification failed:", err);
     return new Response("Invalid token", { status: 401 });
   }
 
@@ -28,6 +28,15 @@ export async function GET(request: NextRequest) {
 
   if (!user) {
     return new Response("User not found!", { status: 404 });
+  }
+
+  if (!user.for_later || user.for_later.length === 0) {
+    return new Response(JSON.stringify([]), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   }
 
   const books = await db

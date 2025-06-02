@@ -3,10 +3,10 @@ import ForLaterList from "./ForLaterList";
 import { cookies } from "next/headers";
 
 export default async function ForLaterPage() {
-  try {
-    const cookieStore = await cookies();
-    const cookieHeader = cookieStore.toString();
+  const cookieStore = await cookies();
+  const cookieHeader = cookieStore.toString();
 
+  try {
     const response = await fetch("http://localhost:3000/api/for_later", {
       cache: "no-cache",
       headers: {
@@ -14,6 +14,10 @@ export default async function ForLaterPage() {
       },
     });
 
+    if (response.status === 401) {
+      window.location.href = "/sign-in";
+      return <div>Unauthorized</div>;
+    }
     if (response.status === 404) {
       return <div>No user found</div>;
     }
@@ -25,6 +29,7 @@ export default async function ForLaterPage() {
 
     return <ForLaterList initialForLaterBooks={forLaterBooks} />;
   } catch (error) {
+    console.error("Error fetching for later books:", error);
     return <div>Something went wrong.</div>;
   }
 }

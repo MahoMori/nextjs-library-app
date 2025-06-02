@@ -24,6 +24,7 @@ export async function PUT(
     ) as { uid: string };
     uid = decoded.uid;
   } catch (err) {
+    console.error("JWT verification failed:", err);
     return new Response("Invalid token", { status: 401 });
   }
 
@@ -75,6 +76,7 @@ export async function DELETE(
     ) as { uid: string };
     uid = decoded.uid;
   } catch (err) {
+    console.error("JWT verification failed:", err);
     return new Response("Invalid token", { status: 401 });
   }
 

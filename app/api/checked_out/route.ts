@@ -1,22 +1,27 @@
-import { NextRequest } from "next/server";
 import { connectToDb } from "@/app/api/db";
 import { UserCheckedOut } from "@/app/types";
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const { db } = await connectToDb();
 
-  // Get the Authorization header
-  const authHeader = request.headers.get("authorization");
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  const cookieStore = await cookies();
+  const tokenCookie = cookieStore.get("token");
+  const token = tokenCookie?.value;
+
+  if (!token) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  // For now, fake extracting uid from the token
-  // In real JWT, you'd decode and verify the token
   let uid: string;
-  if (authHeader === "Bearer faketoken123") {
-    uid = "1"; // hardcoded test user id
-  } else {
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
+      uid: string;
+    };
+    uid = decoded.uid;
+  } catch (err) {
+    console.error("JWT verification failed:", err);
     return new Response("Invalid token", { status: 401 });
   }
 
@@ -26,7 +31,14 @@ export async function GET(request: NextRequest) {
     return new Response("User not found!", { status: 404 });
   }
 
-  console.log("User found:", user);
+  if (!user.checked_out || user.checked_out.length === 0) {
+    return new Response(JSON.stringify([]), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
 
   // Step 1: Extract book IDs and create a map for remaining_days and renew_count
   const checkedOutMap = new Map<

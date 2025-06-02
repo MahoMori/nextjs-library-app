@@ -66,9 +66,6 @@ export default function GenreBookList({
     try {
       const response = await fetch(`http://localhost:3000/api/hold/${bookId}`, {
         method,
-        headers: {
-          Authorization: "Bearer faketoken123",
-        },
       });
       if (response.ok) {
         // Get updated user data from response
