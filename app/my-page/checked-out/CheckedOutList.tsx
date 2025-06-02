@@ -50,7 +50,7 @@ export default function CheckedOutList({
   };
 
   const getRenewalStatus = (book: Book) => {
-    if (book.renew_count! >= 3) {
+    if (book.renew_count! >= 3 || book.num_of_holds > book.num_of_copies) {
       return {
         canRenew: false,
         message: "Maximum renewals reached",

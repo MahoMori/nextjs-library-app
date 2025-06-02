@@ -1,5 +1,7 @@
 import { NextRequest } from "next/server";
 import { connectToDb } from "@/app/api/db";
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 
 // PUT: hold a book or check it out
 export async function PUT(
@@ -8,18 +10,22 @@ export async function PUT(
 ) {
   const { db } = await connectToDb();
 
-  // Get the Authorization header
-  const authHeader = request.headers.get("authorization");
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  const cookieStore = cookies();
+  const token = (await cookieStore).get("token");
+
+  if (!token) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  // For now, fake extracting uid from the token
-  // In real JWT, you'd decode and verify the token
   let uid: string;
-  if (authHeader === "Bearer faketoken123") {
-    uid = "1"; // hardcoded test user id
-  } else {
+  try {
+    const decoded = jwt.verify(
+      token.value,
+      process.env.JWT_SECRET as string
+    ) as { uid: string };
+    uid = decoded.uid;
+  } catch (err) {
+    console.error("JWT verification failed:", err);
     return new Response("Invalid token", { status: 401 });
   }
 
@@ -77,7 +83,7 @@ export async function PUT(
     );
   }
 
-  // Fetch updated user data (optional: adjust as needed)
+  // Fetch updated user data
   const updatedUser = await db.collection("users").findOne({ uid });
 
   return new Response(JSON.stringify(updatedUser), {
@@ -95,18 +101,22 @@ export async function DELETE(
 ) {
   const { db } = await connectToDb();
 
-  // Get the Authorization header
-  const authHeader = request.headers.get("authorization");
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+  const cookieStore = cookies();
+  const token = (await cookieStore).get("token");
+
+  if (!token) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  // For now, fake extracting uid from the token
-  // In real JWT, you'd decode and verify the token
   let uid: string;
-  if (authHeader === "Bearer faketoken123") {
-    uid = "1"; // hardcoded test user id
-  } else {
+  try {
+    const decoded = jwt.verify(
+      token.value,
+      process.env.JWT_SECRET as string
+    ) as { uid: string };
+    uid = decoded.uid;
+  } catch (err) {
+    console.error("JWT verification failed:", err);
     return new Response("Invalid token", { status: 401 });
   }
 
