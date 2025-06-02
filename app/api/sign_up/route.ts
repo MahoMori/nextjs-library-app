@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
     email: email,
     password: hashedPassword,
     createdAt: new Date(),
+    uid: new Date().getTime().toString(), // Simple UID based on timestamp
   };
 
   const result = await db.collection("users").insertOne(newUser);
