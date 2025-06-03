@@ -13,6 +13,8 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import { useRouter, useSearchParams } from "next/navigation";
+
 interface AuthFormProps {
   mode?: "signin" | "signup";
 }
@@ -28,6 +30,9 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
     password: "",
     confirmPassword: "",
   });
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -58,12 +63,12 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
           throw new Error(errorText || "Failed to sign in");
         }
 
-        // Redirect to the previsous page or home page
-        if (window.history.length > 2) {
-          window.history.back();
-          return;
-        }
-        window.location.href = "/";
+        window.dispatchEvent(new Event("auth-changed"));
+
+        // Redirect to callbackUrl or home page
+        const callbackUrl = searchParams.get("callbackUrl") || "/";
+        router.push(callbackUrl);
+        return;
       } catch (error) {
         console.error("Error signing in:", error);
         alert("Failed to sign in. Please try again.");

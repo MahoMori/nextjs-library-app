@@ -7,6 +7,13 @@ export default async function CheckedOutPage() {
   const cookieStore = await cookies();
   const cookieHeader = cookieStore.toString();
 
+  const session = cookieStore.get("token");
+  if (!session) {
+    redirect(
+      `/sign-in?callbackUrl=${encodeURIComponent("/my-page/checked-out")}`
+    );
+  }
+
   try {
     const response = await fetch("http://localhost:3000/api/checked_out", {
       cache: "no-cache",
@@ -15,10 +22,6 @@ export default async function CheckedOutPage() {
       },
     });
 
-    // User is not signed in
-    if (response.status === 401) {
-      redirect("/sign-in");
-    }
     // User is signed in but no user data found
     if (response.status === 404) {
       return (

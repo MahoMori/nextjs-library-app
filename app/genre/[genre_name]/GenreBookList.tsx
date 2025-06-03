@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Book, UserCheckedOut, UserOnHold } from "@/app/types";
 import Image from "next/image";
 import { User, Calendar, BookOpen, Clock, Heart, Users } from "lucide-react";
+import { useAuth } from "@/app/hooks/useAuth";
 
 export default function GenreBookList({
   initialBooks,
@@ -26,6 +27,8 @@ export default function GenreBookList({
       ? window.location.pathname.split("/genre/")[1]?.split("/")[0] || ""
       : ""
   );
+
+  const { authorized } = useAuth();
 
   useEffect(() => {
     // If logged in, fetch for_later books for the user
@@ -66,6 +69,13 @@ export default function GenreBookList({
   }, [token]);
 
   const hold = async (bookId: string) => {
+    if (!authorized) {
+      window.location.href = `/sign-in?callbackUrl=${encodeURIComponent(
+        window.location.pathname
+      )}`;
+      return;
+    }
+
     const isInHold = userHold.includes(bookId);
     const method = isInHold ? "DELETE" : "PUT";
 
@@ -112,6 +122,13 @@ export default function GenreBookList({
   };
 
   const forLater = async (bookId: string) => {
+    if (!authorized) {
+      window.location.href = `/sign-in?callbackUrl=${encodeURIComponent(
+        window.location.pathname
+      )}`;
+      return;
+    }
+
     const isInForLater = userForLater.includes(bookId);
     const method = isInForLater ? "DELETE" : "PUT";
 

@@ -7,6 +7,11 @@ export default async function OnHoldPage() {
   const cookieStore = await cookies();
   const cookieHeader = cookieStore.toString();
 
+  const session = cookieStore.get("token");
+  if (!session) {
+    redirect(`/sign-in?callbackUrl=${encodeURIComponent("/my-page/on-hold")}`);
+  }
+
   try {
     const response = await fetch("http://localhost:3000/api/hold", {
       cache: "no-cache",
@@ -15,10 +20,7 @@ export default async function OnHoldPage() {
       },
     });
 
-    // User is not signed in
-    if (response.status === 401) {
-      redirect("/sign-in");
-    }
+    // User is not signe
     // User is signed in but no user data found
     if (response.status === 404) {
       return (

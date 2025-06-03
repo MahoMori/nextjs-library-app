@@ -79,7 +79,9 @@ export default function Header() {
       if (!response.ok) {
         throw new Error("Failed to sign out");
       }
-      // Optionally, redirect or update state after sign out
+
+      window.dispatchEvent(new Event("auth-changed"));
+
       window.location.href = "/sign-in";
     } catch (error) {
       console.error("Error signing out:", error);
