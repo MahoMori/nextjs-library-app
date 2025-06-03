@@ -13,7 +13,9 @@ export default async function OnHoldPage() {
   }
 
   const fetchUrl =
-    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
+    process.env.NODE_ENV === "production"
+      ? "https://nextjs-library-app-p87v.vercel.app"
+      : "http://localhost:3000";
 
   try {
     const response = await fetch(`${fetchUrl}/api/hold`, {

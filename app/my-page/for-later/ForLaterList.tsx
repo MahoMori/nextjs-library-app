@@ -13,7 +13,9 @@ export default function ForLaterList({
   const [forLaterBooks, setForLaterBooks] =
     useState<Book[]>(initialForLaterBooks);
   const fetchUrl =
-    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
+    process.env.NODE_ENV === "production"
+      ? "https://nextjs-library-app-p87v.vercel.app"
+      : "http://localhost:3000";
 
   const removeFromShelf = async (id: string) => {
     try {

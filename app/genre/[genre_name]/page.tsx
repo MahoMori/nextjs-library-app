@@ -7,7 +7,9 @@ export default async function GenrePage({
 }) {
   let books = [];
   const fetchUrl =
-    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
+    process.env.NODE_ENV === "production"
+      ? "https://nextjs-library-app-p87v.vercel.app"
+      : "http://localhost:3000";
   const response = await fetch(
     `${fetchUrl}/api/genre/${(await params).genre_name}`,
     { method: "GET" }
