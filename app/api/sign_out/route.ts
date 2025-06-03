@@ -1,6 +1,4 @@
-import { NextRequest } from "next/server";
-
-export async function POST(request: NextRequest) {
+export async function POST() {
   const isProd = process.env.NODE_ENV === "production";
   return new Response("Sign out successful", {
     status: 200,

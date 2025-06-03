@@ -1,8 +1,7 @@
-import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const cookieStore = cookies();
   const token = (await cookieStore).get("token");
 
@@ -20,6 +19,7 @@ export async function GET(request: NextRequest) {
       status: 200,
     });
   } catch (err) {
+    console.error("JWT verification failed:", err);
     return new Response(JSON.stringify({ authorized: false }), {
       status: 200,
     });

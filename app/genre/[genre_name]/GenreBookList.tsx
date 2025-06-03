@@ -69,7 +69,7 @@ export default function GenreBookList({
       setUserHold([]);
       setLoading(false);
     }
-  }, [token]);
+  }, [token, fetchUrl]);
 
   const hold = async (bookId: string) => {
     if (!authorized) {
