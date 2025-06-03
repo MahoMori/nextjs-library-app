@@ -14,8 +14,11 @@ export default async function ForLaterPage() {
     );
   }
 
+  const fetchUrl =
+    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
+
   try {
-    const response = await fetch("http://localhost:3000/api/for_later", {
+    const response = await fetch(`${fetchUrl}/api/for_later`, {
       cache: "no-cache",
       headers: {
         Cookie: cookieHeader,

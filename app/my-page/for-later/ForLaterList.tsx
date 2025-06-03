@@ -12,16 +12,15 @@ export default function ForLaterList({
 }) {
   const [forLaterBooks, setForLaterBooks] =
     useState<Book[]>(initialForLaterBooks);
+  const fetchUrl =
+    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
 
   const removeFromShelf = async (id: string) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/for_later/${id}`,
-        {
-          cache: "no-cache",
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${fetchUrl}/api/for_later/${id}`, {
+        cache: "no-cache",
+        method: "DELETE",
+      });
       if (!response.ok) {
         throw new Error("Failed to remove book from shelf");
       }

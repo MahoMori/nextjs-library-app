@@ -12,9 +12,12 @@ export default function OnHoldList({
 }) {
   const [onHoldBooks, setOnHoldBooks] = useState<Book[]>(initialOnHoldBooks);
 
+  const fetchUrl =
+    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
+
   const cancelHold = async (id: string) => {
     try {
-      const response = await fetch(`http://localhost:3000/api/hold/${id}`, {
+      const response = await fetch(`${fetchUrl}/api/hold/${id}`, {
         cache: "no-cache",
         method: "DELETE",
       });

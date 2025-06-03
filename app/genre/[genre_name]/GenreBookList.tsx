@@ -30,12 +30,15 @@ export default function GenreBookList({
 
   const { authorized } = useAuth();
 
+  const fetchUrl =
+    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
+
   useEffect(() => {
     // If logged in, fetch for_later books for the user
     if (token) {
       setLoading(true);
 
-      fetch("http://localhost:3000/api/user_data")
+      fetch(`${fetchUrl}/api/user_data`)
         .then((res) => (res.ok ? res.json() : null))
         .then((user) => {
           if (user) {
@@ -80,7 +83,7 @@ export default function GenreBookList({
     const method = isInHold ? "DELETE" : "PUT";
 
     try {
-      const response = await fetch(`http://localhost:3000/api/hold/${bookId}`, {
+      const response = await fetch(`${fetchUrl}/api/hold/${bookId}`, {
         method,
       });
       if (response.ok) {
@@ -133,12 +136,9 @@ export default function GenreBookList({
     const method = isInForLater ? "DELETE" : "PUT";
 
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/for_later/${bookId}`,
-        {
-          method,
-        }
-      );
+      const response = await fetch(`${fetchUrl}/api/for_later/${bookId}`, {
+        method,
+      });
       if (response.ok) {
         // Get updated user data from response
         const updatedUser = await response.json();

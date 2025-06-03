@@ -6,8 +6,10 @@ export default async function GenrePage({
   params: Promise<{ genre_name: string }>;
 }) {
   let books = [];
+  const fetchUrl =
+    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
   const response = await fetch(
-    `http://localhost:3000/api/genre/${(await params).genre_name}`
+    `${fetchUrl}/api/genre/${(await params).genre_name}`
   );
   if (response.ok) {
     books = await response.json();

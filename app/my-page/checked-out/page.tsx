@@ -14,8 +14,11 @@ export default async function CheckedOutPage() {
     );
   }
 
+  const fetchUrl =
+    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
+
   try {
-    const response = await fetch("http://localhost:3000/api/checked_out", {
+    const response = await fetch(`${fetchUrl}/api/checked_out`, {
       cache: "no-cache",
       headers: {
         Cookie: cookieHeader,

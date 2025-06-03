@@ -12,15 +12,14 @@ export default function CheckedOutList({
   const [checkedOutBooks, setCheckedOutBooks] = useState<Book[]>(
     initialCheckedOutBooks
   );
+  const fetchUrl =
+    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
 
   const renew = async (id: string) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/checked_out/${id}`,
-        {
-          cache: "no-cache",
-        }
-      );
+      const response = await fetch(`${fetchUrl}/api/checked_out/${id}`, {
+        cache: "no-cache",
+      });
       if (!response.ok) {
         throw new Error("Failed to renew");
       }

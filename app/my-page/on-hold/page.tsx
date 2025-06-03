@@ -12,8 +12,11 @@ export default async function OnHoldPage() {
     redirect(`/sign-in?callbackUrl=${encodeURIComponent("/my-page/on-hold")}`);
   }
 
+  const fetchUrl =
+    process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
+
   try {
-    const response = await fetch("http://localhost:3000/api/hold", {
+    const response = await fetch(`${fetchUrl}/api/hold`, {
       cache: "no-cache",
       headers: {
         Cookie: cookieHeader,
