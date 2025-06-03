@@ -20,6 +20,7 @@ export default async function ForLaterPage() {
   try {
     const response = await fetch(`${fetchUrl}/api/for_later`, {
       cache: "no-cache",
+      method: "GET",
       headers: {
         Cookie: cookieHeader,
       },

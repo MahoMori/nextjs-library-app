@@ -13,7 +13,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface AuthFormProps {
   mode?: "signin" | "signup";
@@ -32,7 +32,11 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
   });
 
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // Get search params from window.location if running on client
+  const searchParams =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search)
+      : new URLSearchParams();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({

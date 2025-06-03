@@ -25,8 +25,6 @@ export async function GET() {
     return new Response("Invalid token", { status: 401 });
   }
 
-  console.log("User ID:", uid);
-
   const user = await db.collection("users").findOne({ uid });
 
   if (!user) {

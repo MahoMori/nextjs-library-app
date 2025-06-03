@@ -9,7 +9,8 @@ export default async function GenrePage({
   const fetchUrl =
     process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
   const response = await fetch(
-    `${fetchUrl}/api/genre/${(await params).genre_name}`
+    `${fetchUrl}/api/genre/${(await params).genre_name}`,
+    { method: "GET" }
   );
   if (response.ok) {
     books = await response.json();

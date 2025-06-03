@@ -18,6 +18,7 @@ export default function CheckedOutList({
   const renew = async (id: string) => {
     try {
       const response = await fetch(`${fetchUrl}/api/checked_out/${id}`, {
+        method: "PUT",
         cache: "no-cache",
       });
       if (!response.ok) {

@@ -18,6 +18,7 @@ export default async function OnHoldPage() {
   try {
     const response = await fetch(`${fetchUrl}/api/hold`, {
       cache: "no-cache",
+      method: "GET",
       headers: {
         Cookie: cookieHeader,
       },

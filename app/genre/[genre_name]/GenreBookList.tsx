@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Book, UserCheckedOut, UserOnHold } from "@/app/types";
 import Image from "next/image";
+import Link from "next/link";
 import { User, Calendar, BookOpen, Clock, Heart, Users } from "lucide-react";
 import { useAuth } from "@/app/hooks/useAuth";
 
@@ -11,16 +12,10 @@ export default function GenreBookList({
 }: {
   initialBooks: Book[];
 }) {
-  // Fake login check
-  const isLoggedIn = true; // set to false to simulate not logged in
-  const token = isLoggedIn ? "faketoken123" : null;
-
   const [books, setBooks] = useState<Book[]>(initialBooks);
   const [userHold, setUserHold] = useState<string[]>([]);
   const [userForLater, setUserForLater] = useState<string[]>([]);
   const [userCheckedOut, setUserCheckedOut] = useState<string[]>([]);
-
-  const [loading, setLoading] = useState<boolean>(!!token);
 
   const genreName = decodeURIComponent(
     typeof window !== "undefined"
@@ -29,13 +24,14 @@ export default function GenreBookList({
   );
 
   const { authorized } = useAuth();
+  const [loading, setLoading] = useState(true);
 
   const fetchUrl =
     process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
 
   useEffect(() => {
     // If logged in, fetch for_later books for the user
-    if (token) {
+    if (authorized) {
       setLoading(true);
 
       fetch(`${fetchUrl}/api/user_data`)
@@ -69,7 +65,7 @@ export default function GenreBookList({
       setUserHold([]);
       setLoading(false);
     }
-  }, [token, fetchUrl]);
+  }, [authorized, fetchUrl]);
 
   const hold = async (bookId: string) => {
     if (!authorized) {
@@ -365,9 +361,12 @@ export default function GenreBookList({
                 We couldn&apos;t find any books in this genre. Try browsing
                 other categories.
               </p>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors cursor-pointer">
+              <Link
+                href="/"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors cursor-pointer"
+              >
                 Browse All Genres
-              </button>
+              </Link>
             </div>
           </div>
         )}

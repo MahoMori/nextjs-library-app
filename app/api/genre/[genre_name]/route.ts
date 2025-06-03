@@ -3,12 +3,11 @@ import { connectToDb } from "@/app/api/db";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { genre_name: string } }
+  { params }: { params: Promise<{ genre_name: string }> }
 ) {
   const { db } = await connectToDb();
 
-  params = await params;
-  const genre = await params.genre_name;
+  const genre = await params.then((p) => p.genre_name);
 
   const books = await db.collection("books").find({ genre: genre }).toArray();
 

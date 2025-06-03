@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 // PUT: hold a book or check it out
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { book_id: string } }
+  { params }: { params: Promise<{ book_id: string }> }
 ) {
   const { db } = await connectToDb();
 
@@ -37,8 +37,7 @@ export async function PUT(
     });
   }
 
-  params = await params;
-  const bookId = await params.book_id;
+  const bookId = await params.then((p) => p.book_id);
 
   // Check if the book exists
   const book = await db.collection("books").findOne({ id: bookId });
@@ -97,7 +96,7 @@ export async function PUT(
 // DELETE: cancel hold
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { book_id: string } }
+  { params }: { params: Promise<{ book_id: string }> }
 ) {
   const { db } = await connectToDb();
 
@@ -129,7 +128,7 @@ export async function DELETE(
   }
 
   // Remove book from user's on_hold array
-  const bookId = params.book_id;
+  const bookId = await params.then((p) => p.book_id);
   await db
     .collection("users")
     .updateOne({ uid }, { $pull: { on_hold: { id: bookId } } } as never);

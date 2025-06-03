@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 // PUT: renew a checked out book
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { book_id: string } }
+  { params }: { params: Promise<{ book_id: string }> }
 ) {
   const { db } = await connectToDb();
 
@@ -37,8 +37,7 @@ export async function PUT(
     });
   }
 
-  params = await params;
-  const bookId = await params.book_id;
+  const bookId = await params.then((p) => p.book_id);
 
   await db.collection("users").updateOne(
     { uid, "checked_out.id": bookId },

@@ -20,6 +20,7 @@ export default async function CheckedOutPage() {
   try {
     const response = await fetch(`${fetchUrl}/api/checked_out`, {
       cache: "no-cache",
+      method: "GET",
       headers: {
         Cookie: cookieHeader,
       },

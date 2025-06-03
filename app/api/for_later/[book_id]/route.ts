@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { book_id: string } }
+  { params }: { params: Promise<{ book_id: string }> }
 ) {
   const { db } = await connectToDb();
 
@@ -36,8 +36,7 @@ export async function PUT(
     });
   }
 
-  params = await params;
-  const bookId = await params.book_id;
+  const bookId = await params.then((p) => p.book_id);
 
   // Add book_id to user's for_later array
   await db
@@ -57,7 +56,7 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { book_id: string } }
+  { params }: { params: Promise<{ book_id: string }> }
 ) {
   const { db } = await connectToDb();
 
@@ -89,7 +88,7 @@ export async function DELETE(
   }
 
   // Remove book_id from user's for_later array
-  const bookId = params.book_id;
+  const bookId = await params.then((p) => p.book_id);
   await db
     .collection("users")
     .updateOne({ uid }, { $pull: { for_later: bookId } as never });
