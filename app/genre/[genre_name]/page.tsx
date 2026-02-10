@@ -1,4 +1,5 @@
 import GenreBookList from "./GenreBookList";
+import { headers } from "next/headers";
 
 export default async function GenrePage({
   params,
@@ -7,11 +8,16 @@ export default async function GenrePage({
 }) {
   let books = [];
   const { genre_name } = await params;
-  const fetchUrl =
-    process.env.NODE_ENV === "production"
-      ? "https://nextjs-library-app-p87v.vercel.app"
-      : "http://localhost:3000";
-  const response = await fetch(`${fetchUrl}/api/genre/${genre_name}`, {
+  const headersList = headers();
+  const host =
+    (await headersList).get("x-forwarded-host") ??
+    (await headersList).get("host");
+  const protocol = (await headersList).get("x-forwarded-proto") ?? "http";
+  const baseUrl = host
+    ? `${protocol}://${host}`
+    : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
+
+  const response = await fetch(`${baseUrl}/api/genre/${genre_name}`, {
     method: "GET",
   });
   if (response.ok) {
