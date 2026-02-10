@@ -1,6 +1,6 @@
 import { Book } from "@/app/types";
 import OnHoldList from "./OnHoldList";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
 export default async function OnHoldPage() {
@@ -12,13 +12,17 @@ export default async function OnHoldPage() {
     redirect(`/sign-in?callbackUrl=${encodeURIComponent("/my-page/on-hold")}`);
   }
 
-  const fetchUrl =
-    process.env.NODE_ENV === "production"
-      ? "https://nextjs-library-app-p87v.vercel.app"
-      : "http://localhost:3000";
+  const headersList = headers();
+  const host =
+    (await headersList).get("x-forwarded-host") ??
+    (await headersList).get("host");
+  const protocol = (await headersList).get("x-forwarded-proto") ?? "http";
+  const baseUrl = host
+    ? `${protocol}://${host}`
+    : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
 
   try {
-    const response = await fetch(`${fetchUrl}/api/hold`, {
+    const response = await fetch(`${baseUrl}/api/hold`, {
       cache: "no-cache",
       method: "GET",
       headers: {
