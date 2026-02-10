@@ -20,23 +20,20 @@ export default function GenreBookList({
   const genreName = decodeURIComponent(
     typeof window !== "undefined"
       ? window.location.pathname.split("/genre/")[1]?.split("/")[0] || ""
-      : ""
+      : "",
   );
 
   const { authorized } = useAuth();
   const [loading, setLoading] = useState(true);
 
-  const fetchUrl =
-    process.env.NODE_ENV === "production"
-      ? "https://nextjs-library-app-p87v.vercel.app"
-      : "http://localhost:3000";
+  const apiBase = ""; // same-origin to avoid CORS in deployed environments
 
   useEffect(() => {
     // If logged in, fetch for_later books for the user
     if (authorized) {
       setLoading(true);
 
-      fetch(`${fetchUrl}/api/user_data`)
+      fetch(`${apiBase}/api/user_data`)
         .then((res) => (res.ok ? res.json() : null))
         .then((user) => {
           if (user) {
@@ -44,13 +41,13 @@ export default function GenreBookList({
             setUserCheckedOut(
               user.checked_out
                 ? user.checked_out.map((item: UserCheckedOut) => item.id)
-                : []
+                : [],
             );
             setUserForLater(user.for_later ? user.for_later : []);
             setUserHold(
               user.on_hold
                 ? user.on_hold.map((item: UserOnHold) => item.id)
-                : []
+                : [],
             );
           } else {
             setUserCheckedOut([]);
@@ -67,12 +64,12 @@ export default function GenreBookList({
       setUserHold([]);
       setLoading(false);
     }
-  }, [authorized, fetchUrl]);
+  }, [authorized]);
 
   const hold = async (bookId: string) => {
     if (!authorized) {
       window.location.href = `/sign-in?callbackUrl=${encodeURIComponent(
-        window.location.pathname
+        window.location.pathname,
       )}`;
       return;
     }
@@ -81,7 +78,7 @@ export default function GenreBookList({
     const method = isInHold ? "DELETE" : "PUT";
 
     try {
-      const response = await fetch(`${fetchUrl}/api/hold/${bookId}`, {
+      const response = await fetch(`${apiBase}/api/hold/${bookId}`, {
         method,
       });
       if (response.ok) {
@@ -96,7 +93,7 @@ export default function GenreBookList({
         // Update userCheckedOut state
         if (updatedUser.checked_out) {
           setUserCheckedOut(
-            updatedUser.checked_out.map((item: UserCheckedOut) => item.id)
+            updatedUser.checked_out.map((item: UserCheckedOut) => item.id),
           );
         }
 
@@ -110,8 +107,8 @@ export default function GenreBookList({
                     ? book.num_of_holds - 1
                     : book.num_of_holds + 1,
                 }
-              : book
-          )
+              : book,
+          ),
         );
       } else {
         alert("Failed to update hold");
@@ -125,7 +122,7 @@ export default function GenreBookList({
   const forLater = async (bookId: string) => {
     if (!authorized) {
       window.location.href = `/sign-in?callbackUrl=${encodeURIComponent(
-        window.location.pathname
+        window.location.pathname,
       )}`;
       return;
     }
@@ -134,7 +131,7 @@ export default function GenreBookList({
     const method = isInForLater ? "DELETE" : "PUT";
 
     try {
-      const response = await fetch(`${fetchUrl}/api/for_later/${bookId}`, {
+      const response = await fetch(`${apiBase}/api/for_later/${bookId}`, {
         method,
       });
       if (response.ok) {
@@ -144,7 +141,7 @@ export default function GenreBookList({
         // Update userForLater state
         if (isInForLater) {
           setUserForLater(
-            updatedUser.for_later.filter((id: string) => id !== bookId)
+            updatedUser.for_later.filter((id: string) => id !== bookId),
           );
         } else {
           setUserForLater([...userForLater, bookId]);
