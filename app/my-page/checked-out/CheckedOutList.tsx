@@ -10,16 +10,13 @@ export default function CheckedOutList({
   initialCheckedOutBooks: Book[];
 }) {
   const [checkedOutBooks, setCheckedOutBooks] = useState<Book[]>(
-    initialCheckedOutBooks
+    initialCheckedOutBooks,
   );
-  const fetchUrl =
-    process.env.NODE_ENV === "production"
-      ? "https://nextjs-library-app-p87v.vercel.app"
-      : "http://localhost:3000";
+  const apiBase = ""; // same-origin to avoid CORS in deployed environments
 
   const renew = async (id: string) => {
     try {
-      const response = await fetch(`${fetchUrl}/api/checked_out/${id}`, {
+      const response = await fetch(`${apiBase}/api/checked_out/${id}`, {
         method: "PUT",
         cache: "no-cache",
       });
@@ -40,7 +37,7 @@ export default function CheckedOutList({
             };
           }
           return book;
-        })
+        }),
       );
     } catch (error) {
       console.error("Failed to renew:", error);
@@ -170,8 +167,8 @@ export default function CheckedOutList({
                                   dueStatus.color === "emerald"
                                     ? "bg-emerald-100"
                                     : dueStatus.color === "amber"
-                                    ? "bg-amber-100"
-                                    : "bg-red-100"
+                                      ? "bg-amber-100"
+                                      : "bg-red-100"
                                 }`}
                               >
                                 <svg
@@ -179,8 +176,8 @@ export default function CheckedOutList({
                                     dueStatus.color === "emerald"
                                       ? "text-emerald-600"
                                       : dueStatus.color === "amber"
-                                      ? "text-amber-600"
-                                      : "text-red-600"
+                                        ? "text-amber-600"
+                                        : "text-red-600"
                                   } ${dueStatus.urgent ? "animate-pulse" : ""}`}
                                   fill="none"
                                   stroke="currentColor"
@@ -201,8 +198,8 @@ export default function CheckedOutList({
                                       dueStatus.color === "emerald"
                                         ? "text-emerald-600"
                                         : dueStatus.color === "amber"
-                                        ? "text-amber-600"
-                                        : "text-red-600"
+                                          ? "text-amber-600"
+                                          : "text-red-600"
                                     }`}
                                   >
                                     {dueStatus.text}
@@ -210,7 +207,7 @@ export default function CheckedOutList({
                                   <span className="text-slate-600">
                                     {book.remaining_days! <= 0
                                       ? `${Math.abs(
-                                          book.remaining_days!
+                                          book.remaining_days!,
                                         )} days overdue`
                                       : `${book.remaining_days!} days remaining`}
                                   </span>
@@ -219,8 +216,8 @@ export default function CheckedOutList({
                                   {book.remaining_days! <= 0
                                     ? "Please return or renew immediately"
                                     : book.remaining_days! <= 3
-                                    ? "Return or renew soon"
-                                    : "Enjoy your reading"}
+                                      ? "Return or renew soon"
+                                      : "Enjoy your reading"}
                                 </p>
                               </div>
                             </div>
@@ -232,8 +229,8 @@ export default function CheckedOutList({
                                   renewalStatus.color === "emerald"
                                     ? "bg-emerald-100"
                                     : renewalStatus.color === "amber"
-                                    ? "bg-amber-100"
-                                    : "bg-red-100"
+                                      ? "bg-amber-100"
+                                      : "bg-red-100"
                                 }`}
                               >
                                 <svg
@@ -241,8 +238,8 @@ export default function CheckedOutList({
                                     renewalStatus.color === "emerald"
                                       ? "text-emerald-600"
                                       : renewalStatus.color === "amber"
-                                      ? "text-amber-600"
-                                      : "text-red-600"
+                                        ? "text-amber-600"
+                                        : "text-red-600"
                                   }`}
                                   fill="none"
                                   stroke="currentColor"

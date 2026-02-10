@@ -12,14 +12,11 @@ export default function OnHoldList({
 }) {
   const [onHoldBooks, setOnHoldBooks] = useState<Book[]>(initialOnHoldBooks);
 
-  const fetchUrl =
-    process.env.NODE_ENV === "production"
-      ? "https://nextjs-library-app-p87v.vercel.app"
-      : "http://localhost:3000";
+  const apiBase = ""; // same-origin to avoid CORS in deployed environments
 
   const cancelHold = async (id: string) => {
     try {
-      const response = await fetch(`${fetchUrl}/api/hold/${id}`, {
+      const response = await fetch(`${apiBase}/api/hold/${id}`, {
         cache: "no-cache",
         method: "DELETE",
       });
@@ -114,11 +111,11 @@ export default function OnHoldList({
             {onHoldBooks.map((book: Book, index: number) => {
               const priority = getPriorityLevel(
                 book.usernum_in_line!,
-                book.num_of_copies
+                book.num_of_copies,
               );
               const waitTime = getEstimatedWaitTime(
                 book.usernum_in_line!,
-                book.num_of_copies
+                book.num_of_copies,
               );
 
               return (
@@ -183,8 +180,8 @@ export default function OnHoldList({
                                 priority.color === "emerald"
                                   ? "bg-emerald-100 text-emerald-700"
                                   : priority.color === "amber"
-                                  ? "bg-amber-100 text-amber-700"
-                                  : "bg-red-100 text-red-700"
+                                    ? "bg-amber-100 text-amber-700"
+                                    : "bg-red-100 text-red-700"
                               }`}
                             >
                               <div
@@ -192,8 +189,8 @@ export default function OnHoldList({
                                   priority.color === "emerald"
                                     ? "bg-emerald-500"
                                     : priority.color === "amber"
-                                    ? "bg-amber-500"
-                                    : "bg-red-500"
+                                      ? "bg-amber-500"
+                                      : "bg-red-500"
                                 }`}
                               ></div>
                               {priority.text}

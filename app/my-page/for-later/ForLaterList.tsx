@@ -12,14 +12,11 @@ export default function ForLaterList({
 }) {
   const [forLaterBooks, setForLaterBooks] =
     useState<Book[]>(initialForLaterBooks);
-  const fetchUrl =
-    process.env.NODE_ENV === "production"
-      ? "https://nextjs-library-app-p87v.vercel.app"
-      : "http://localhost:3000";
+  const apiBase = ""; // same-origin to avoid CORS in deployed environments
 
   const removeFromShelf = async (id: string) => {
     try {
-      const response = await fetch(`${fetchUrl}/api/for_later/${id}`, {
+      const response = await fetch(`${apiBase}/api/for_later/${id}`, {
         cache: "no-cache",
         method: "DELETE",
       });
@@ -27,7 +24,7 @@ export default function ForLaterList({
         throw new Error("Failed to remove book from shelf");
       }
       setForLaterBooks((prevBooks) =>
-        prevBooks.filter((book) => book.id !== id)
+        prevBooks.filter((book) => book.id !== id),
       );
     } catch (error) {
       console.error("Failed to remove book from shelf:", error);
