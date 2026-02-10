@@ -125,8 +125,16 @@ export default function AuthForm({ mode = "signin" }: AuthFormProps) {
   };
 
   const toggleAuthMode = () => {
-    setAuthMode(authMode === "signin" ? "signup" : "signin");
+    const nextMode = authMode === "signin" ? "signup" : "signin";
+    setAuthMode(nextMode);
     setFormData({ name: "", email: "", password: "", confirmPassword: "" });
+
+    const callbackUrl = searchParams.get("callbackUrl");
+    const nextPath = nextMode === "signup" ? "/sign-up" : "/sign-in";
+    const target = callbackUrl
+      ? `${nextPath}?callbackUrl=${encodeURIComponent(callbackUrl)}`
+      : nextPath;
+    router.push(target);
   };
 
   return (
